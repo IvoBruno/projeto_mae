@@ -1,11 +1,11 @@
 # Instituto Federal do Piauí (IFPI) - Campus Parnaíba
 
-## PROJETO MÃE: REDE DIGITAL SOLIDÁRIA DE APOIO A MÃES SOLO
+## ELOMATERNO: REDE DIGITAL SOLIDÁRIA DE APOIO A MÃES SOLO
 
-### Articulação entre Engenharia de Software, Suporte Comunitário e Mitigação de Vulnerabilidades na Economia do Cuidado
+### Articulação entre Engenharia de Software Hexagonal, Suporte Comunitário e Mitigação de Vulnerabilidades na Economia do Cuidado
 
 **Autor:** Ivo Bruno Gomes Araujo  
-**Orientador(a):** Prof. Dr. Antonio Santos de Sousa  
+**Orientador(a):** Prof. Me. Antonio Santos de Sousa  
 **Área de Concentração:** Engenharia de Software Aplicada / Sistemas Colaborativos de Impacto Social
 
 ## 1. CONTEXTUALIZAÇÃO E MOTIVAÇÃO SOCIAL
@@ -22,7 +22,7 @@ Diante do esgotamento das redes de parentesco tradicionais e da carência de equ
 
 > **Como um sistema computacional desacoplado, seguro e georreferenciado pode facilitar a conexão entre mães solo, doadores de insumos materiais de primeira necessidade e redes solidárias locais, mitigando a carência material imediata e o isolamento socioafetivo?**
 
-O **Projeto Mãe** responde a essa problemática ao conceber uma plataforma web responsiva orientada a dois módulos operacionais complementares:
+O **EloMaterno** responde a essa problemática ao conceber uma plataforma web responsiva orientada a dois módulos operacionais complementares:
 
 1. **Vitrine Colaborativa de Insumos e Enxovais:** Catálogo digital de doações de artigos de puericultura e itens de higiene infantil (berços, roupas, carrinhos, fraldas e fórmulas), permitindo manifestação de interesse orientada por geolocalização e proximidade espacial.
 2. **Fórum Comunitário Temático e de Acolhimento:** Ambiente dialógico para troca de experiências, orientações práticas cotidianas, desabafos e elucidação de dúvidas sociojurídicas básicas, dotado de filtros ativos de proteção à privacidade das usuárias.
@@ -31,15 +31,15 @@ O **Projeto Mãe** responde a essa problemática ao conceber uma plataforma web 
 
 ### 3.1 Objetivo Geral
 
-Conceber, arquitetar, implementar e validar o Produto Mínimo Viável (MVP) de uma aplicação web desacoplada voltada ao fortalecimento da rede de suporte a mães solo, provendo mecanismos seguros de catalogação de doações de enxovais infantis e mediação comunitária com foco em usabilidade e proteção de dados pessoais.
+Conceber, arquitetar, implementar e validar o Produto Mínimo Viável (MVP) da plataforma **EloMaterno**: uma aplicação web desacoplada voltada ao fortalecimento da rede de suporte a mães solo, provendo mecanismos seguros de catalogação de doações de enxovais infantis e mediação comunitária com foco em usabilidade e proteção de dados pessoais.
 
 ### 3.2 Objetivos Específicos
 
-- Modelar uma arquitetura multicamadas RESTful fundamentada em Java com Spring Boot no backend e React no frontend (Single-Page Application).
+- Modelar uma arquitetura hexagonal (*Ports & Adapters*) RESTful fundamentada em Java com Spring Boot no backend e React no frontend (Single-Page Application).
 - Estruturar o banco de dados relacional (PostgreSQL) com suporte a tipos geométricos espaciais (PostGIS) para futuros filtros de proximidade quilométrica.
 - Estabelecer controles de privacidade e moderação de conteúdo (PII Scrubber via Regex) para impedir a exposição pública de dados sensíveis de contato nos fóruns.
 - Viabilizar integração pragmática de armazenamento e manipulação de mídia em nuvem (Cloudinary) para compressão e exibição otimizada de imagens de doações.
-- Conduzir o desenvolvimento iterativo sob práticas ágeis adaptadas ao contexto de desenvolvedor solo, fatiando a entrega em 4 sprints quinzenais estruturadas.
+- Conduzir o desenvolvimento iterativo sob práticas ágeis adaptadas ao contexto de desenvolvedor solo, fatiando a entrega em 6 sprints de duas semanas estruturadas (12 semanas no total).
 
 ## 4. FUNDAMENTAÇÃO TEÓRICA E INTERSECCIONALIDADE
 
@@ -136,16 +136,18 @@ O diagrama abaixo ilustra o relacionamento relacional do sistema, contemplando a
 +----------------------------------------+
 ```
 
-## 8. METODOLOGIA DE EXECUÇÃO: ROADMAP EM SPRINTS QUINZENAIS
+## 8. METODOLOGIA DE EXECUÇÃO: ROADMAP EM 6 SPRINTS (DUAS SEMANAS CADA)
 
-O cronograma do projeto distribui as metas técnicas ao longo de 60 dias de desenvolvimento estruturado (4 iterações de 15 dias):
+O cronograma do projeto distribui as metas técnicas ao longo de 12 semanas de desenvolvimento estruturado (6 iterações de 2 semanas cada, totalizando 84 dias):
 
-| Iteração e Foco                                      | Metas de Backend e Banco de Dados                                                                                                             | Metas de Frontend e Interface                                                                                                              | DevOps e Critérios de Validação                                                                                                      |
-| :--------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
-| **Sprint 1 (Dias 1 a 15)**<br>`Fundação & Auth`      | Setup Spring Boot 3; Migrations Flyway das tabelas `usuario` e `endereco`; Spring Security com JWT; Endpoints de registro e login com BCrypt. | Setup React com Vite e Tailwind; Contexto de autenticação (`AuthContext`); Telas de Login e Cadastro integradas ao serviço ViaCEP.         | Ambiente de desenvolvimento local orquestrado via Docker Compose; Registro e login autenticado com persistência de token no cliente. |
-| **Sprint 2 (Dias 16 a 30)**<br>`Fórum Comunitário`   | Migrations de `topico` e `comentario`; Endpoints de listagem paginada por categorias; Sanitização PII via regex contra vazamento de contatos. | Feed do fórum com paginação; Tela de detalhamento de tópicos com respostas em tempo real; Modal para abertura de novos tópicos.            | Usuárias conseguem publicar e debater em tópicos comunitários com bloqueio ativo a postagens com números de telefone ou CPF.         |
-| **Sprint 3 (Dias 31 a 45)**<br>`Vitrine de Enxovais` | Migrations de `item_doacao` e `pedido_ajuda`; Integração com SDK Cloudinary; Endpoints de CRUD de itens e pedidos de urgência.                | Galeria de itens com filtros de categoria e estado de conservação; Formulário "Quero Doar" com upload e preview de foto; Mural de pedidos. | Upload eficiente de imagens com aplicação automática de presets Cloudinary (`f_auto,q_auto`) e persistência das URLs no banco.       |
-| **Sprint 4 (Dias 46 a 60)**<br>`Match & Deploy MVP`  | Criação de `MatchDoacao`; Endpoint de manifestação de interesse; Migrations das tabelas `conversa`/`mensagem` (suporte à V2).                 | Botão "Quero este Item" com redirecionamento formatado ao WhatsApp (`wa.me`); Painel "Minhas Doações e Solicitações".                      | Deploy do PostgreSQL (Supabase/Render), backend (Render/Railway) e frontend (Vercel); Execução de testes de ponta a ponta.           |
+| Iteração e Foco | Metas de Backend e Banco de Dados | Metas de Frontend e Interface | DevOps e Critérios de Validação |
+| :--- | :--- | :--- | :--- |
+| **Sprint 1 (Semanas 1 e 2 / Dias 1 a 14)**<br>`Fundação & Auth` | Setup Spring Boot 3 sob Arquitetura Hexagonal; Migrations Flyway das tabelas `usuario` e `endereco`; Spring Security com JWT stateless; Endpoints de registro e login com BCrypt. | Setup React com Vite e Tailwind CSS; Contexto de autenticação (`AuthContext`); Telas de Login e Cadastro com preenchimento automático integrado ao ViaCEP. | Ambiente local orquestrado via Docker Compose (PostgreSQL com PostGIS); Registro e login autenticado com persistência de token no cliente. |
+| **Sprint 2 (Semanas 3 e 4 / Dias 15 a 28)**<br>`Fórum Comunitário` | Migrations de `topico` e `comentario`; Endpoints de listagem paginada por categorias; Validador de domínio/anotação `@SemPII` via Regex com HTTP 422 contra vazamento de contatos. | Feed do fórum com paginação; Tela de detalhamento de tópicos com submissão de comentários em atualização otimista; Modal para abertura de novos tópicos com selos visuais de voluntários. | Usuárias conseguem publicar e debater em tópicos comunitários com bloqueio ativo e orientativo a postagens com números de telefone ou CPF. |
+| **Sprint 3 (Semanas 5 e 6 / Dias 29 a 42)**<br>`Vitrine de Enxovais` | Migrations da tabela `item_doacao`; Endpoints de CRUD de itens de puericultura; Filtros por categoria, estado de conservação, município e bairro; Integração com SDK Cloudinary. | Galeria de itens responsiva com filtros combinados; Formulário "Quero Doar" com upload direto de 1 foto via preset Cloudinary e preview; Tela de detalhes do item. | Upload eficiente de imagens com aplicação automática de presets Cloudinary (`f_auto,q_auto,w_500`) e persistência das URLs seguras no banco. |
+| **Sprint 4 (Semanas 7 e 8 / Dias 43 a 56)**<br>`Pedidos de Ajuda` | Migrations da tabela `pedido_ajuda`; Endpoints para cadastro de pedidos com níveis de urgência (`BAIXA`, `MEDIA`, `ALTA`); Endpoint de atendimento direto ("Quero Ajudar"). | Mural de pedidos de ajuda com ordenação por urgência e data; Formulário para publicação de necessidades materiais urgentes por mães solo; Ação "Quero Ajudar" para doadores. | Mães solo cadastram pedidos emergenciais (ex.: fraldas, fórmulas) e doadores conseguem manifestar intenção de atendimento diretamente. |
+| **Sprint 5 (Semanas 9 e 10 / Dias 57 a 70)**<br>`Match Seguro & Painel` | Criação de `MatchDoacao` com máquina de estados (duplo aceite); Endpoint de manifestação de interesse; Liberação de link parametrizado do WhatsApp (`wa.me`) pós-aceite; Migrations preparatórias de `conversa`/`mensagem` (V2). | Botão "Quero este Item"; Painel "Minhas Doações e Solicitações" para doadores aprovarem solicitações e ambas as partes acessarem o canal WhatsApp seguro; Gestão de status de conclusão. | Fluxo completo de match com proteção ativa aos telefones das usuárias; Doações concluídas saem da vitrine geral. |
+| **Sprint 6 (Semanas 11 e 12 / Dias 71 a 84)**<br>`Qualidade, CI/CD & Deploy` | Testes de conformidade arquitetural com ArchUnit; Testes de carga com k6 para validação formal de latência (p95 < 300 ms em instâncias aquecidas); Pipeline de CI/CD via GitHub Actions. | Auditoria de acessibilidade e usabilidade móvel (WCAG 2.1 AA e heurísticas para mobile); Ajustes de responsividade em telas a partir de 360 px. | Deploy automatizado da API no Render (Docker), banco PostgreSQL com PostGIS no Supabase/Neon e frontend na Vercel; Validação de testes de ponta a ponta. |
 
 ## 9. CONTRIBUIÇÕES ESPERADAS E CRITÉRIOS DE AVALIAÇÃO ACADÊMICA
 
