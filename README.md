@@ -20,11 +20,11 @@ Como consequência, as mães solo — majoritariamente pretas e pardas das perif
 
 Diante do esgotamento das redes de parentesco tradicionais e da carência de equipamentos públicos universais de acolhimento e suporte infantil, coloca-se a seguinte questão de pesquisa:
 
-> **Como um sistema computacional desacoplado, seguro e georreferenciado pode facilitar a conexão entre mães solo, doadores de insumos materiais de primeira necessidade e redes solidárias locais, mitigando a carência material imediata e o isolamento socioafetivo?**
+> **Como um sistema computacional desacoplado, seguro e orientado por recorte territorial administrativo pode facilitar a conexão entre mães solo, doadores de insumos materiais de primeira necessidade e redes solidárias locais, mitigando a carência material imediata e o isolamento socioafetivo?**
 
 O **EloMaterno** responde a essa problemática ao conceber uma plataforma web responsiva orientada a dois módulos operacionais complementares:
 
-1. **Vitrine Colaborativa de Insumos e Enxovais:** Catálogo digital de doações de artigos de puericultura e itens de higiene infantil (berços, roupas, carrinhos, fraldas e fórmulas), permitindo manifestação de interesse orientada por geolocalização e proximidade espacial.
+1. **Vitrine Colaborativa de Insumos e Enxovais:** Catálogo digital de doações de artigos de puericultura e itens de higiene infantil (berços, roupas, carrinhos, fraldas e fórmulas), permitindo manifestação de interesse filtrada por Estado, Município, Bairro e Zona, sem coleta ou exposição de coordenadas geográficas.
 2. **Fórum Comunitário Temático e de Acolhimento:** Ambiente dialógico para troca de experiências, orientações práticas cotidianas, desabafos e elucidação de dúvidas sociojurídicas básicas, dotado de filtros ativos de proteção à privacidade das usuárias.
 
 ## 3. OBJETIVOS DO TRABALHO
@@ -36,7 +36,7 @@ Conceber, arquitetar, implementar e validar o Produto Mínimo Viável (MVP) da p
 ### 3.2 Objetivos Específicos
 
 - Modelar uma arquitetura hexagonal (*Ports & Adapters*) RESTful fundamentada em Java com Spring Boot no backend e React no frontend (Single-Page Application).
-- Estruturar o banco de dados relacional (PostgreSQL) com suporte a tipos geométricos espaciais (PostGIS) para futuros filtros de proximidade quilométrica.
+- Estruturar o banco de dados relacional (PostgreSQL 15+) com indexação B-Tree para filtros territoriais por Estado, Município, Bairro e Zona, preservando a minimização de dados sem persistência de logradouro ou coordenadas geográficas.
 - Estabelecer controles de privacidade e moderação de conteúdo (PII Scrubber via Regex) para impedir a exposição pública de dados sensíveis de contato nos fóruns.
 - Viabilizar integração pragmática de armazenamento e manipulação de mídia em nuvem (Cloudinary) para compressão e exibição otimizada de imagens de doações.
 - Conduzir o desenvolvimento iterativo sob práticas ágeis adaptadas ao contexto de desenvolvedor solo, fatiando a entrega em 6 sprints de duas semanas estruturadas (12 semanas no total).
@@ -59,20 +59,20 @@ Para atender às restrições de um ciclo de desenvolvimento conduzido por um ú
 | **Segurança & Sessão**           | Spring Security + JWT                         | Autenticação _stateless_ com tokens seguros, criptografia de senhas com BCrypt e isolamento de permissões com Role-Based Access Control (RBAC).                    |
 | **Frontend SPA**                 | React.js (Vite) + Tailwind CSS                | Alta performance no processo de _build_, ecossistema de componentes reutilizáveis e estilização utilitária ágil com foco em acessibilidade e responsividade móvel. |
 | **Gerenciamento de Formulários** | React Hook Form + Zod                         | Validação declarativa de esquemas no cliente, impedindo requisições inválidas e proporcionando feedback imediato de preenchimento.                                 |
-| **Banco de Dados Relacional**    | PostgreSQL 15+ com PostGIS                    | Integridade referencial estrita (ACID), suporte a esquemas complexos e capacidade de cálculo geométrico nativo (`ST_DWithin`) para proximidade.                    |
+| **Banco de Dados Relacional**    | PostgreSQL 15+                                | Integridade referencial estrita (ACID), migrações Flyway e indexação B-Tree para filtros territoriais por Estado, Município, Bairro e Zona.                        |
 | **Armazenamento de Mídia**       | Cloudinary CDN                                | Upload direto via _unsigned presets_, transformações de imagem na URL (`f_auto,q_auto,w_500`), reduzindo o consumo de banda e o processamento no backend.          |
-| **Infraestrutura / Deploy**      | Render / Railway (Back e DB) + Vercel (Front) | Baixa complexidade operacional de CI/CD, provimento simplificado de certificados SSL e custos contidos em camadas gratuitas de validação.                          |
+| **Infraestrutura / Deploy**      | Render (API) + Supabase/Neon (DB) + Vercel    | Baixa complexidade operacional de CI/CD, provimento simplificado de certificados SSL e custos contidos em camadas gratuitas de retenção permanente.                |
 
 ## 6. SEGURANÇA COMUNITÁRIA E CONFORMIDADE COM A LGPD
 
 Em virtude do público-alvo envolver mulheres que vivenciam litígios judiciais, histórico de violência doméstica ou vulnerabilidade socioeconômica, a plataforma adota o princípio de _Privacy by Design_:
 
-1. **Filtro de Conteúdo e Moderação de PII (Personally Identifiable Information):** O backend implementa interceptores e validadores customizados via expressões regulares (Regex) para identificar e rejeitar automaticamente publicações no fórum que contenham números de telefone, CPFs ou endereços completos. As usuárias são instruídas a manter os diálogos públicos focados em acolhimento.
-2. **Estratégia de Match Seguro:** No MVP, a conexão entre doador e recebedora é originada pela criação de um registro na entidade `MatchDoacao`. Ao manifestar interesse, a receptora recebe um link parametrizado para o WhatsApp do doador (`wa.me/55...`), assegurando que contatos não fiquem expostos no mural geral.
+1. **Filtro de Conteúdo e Moderação de PII (Personally Identifiable Information):** O backend implementa interceptores e validadores customizados via expressões regulares (Regex) para identificar e rejeitar automaticamente publicações no fórum que contenham números de telefone, CPFs ou endereços completos. Ademais, em respeito à minimização de dados (LGPD, art. 6º, III), o sistema **não coleta nem armazena coordenadas geográficas ou logradouros residenciais**, operando exclusivamente com Estado, Município, Bairro e Zona.
+2. **Estratégia de Match Seguro:** No MVP, a conexão entre doador e recebedora é originada pela criação de um registro na entidade `MatchDoacao`. Somente após o aceite formal do doador, ambas as partes recebem o link parametrizado para o WhatsApp (`wa.me/55...`), assegurando que contatos não fiquem expostos no mural geral.
 
 ## 7. MODELAGEM CONCEITUAL DE DADOS (DER LÓGICO)
 
-O diagrama abaixo ilustra o relacionamento relacional do sistema, contemplando a fundação dos módulos de autenticação, catálogo de itens, tópicos comunitários e a preparação para o canal de mensageria:
+O diagrama abaixo ilustra o relacionamento relacional do sistema, contemplando a fundação dos módulos de autenticação, recorte territorial minimizado, catálogo de itens, tópicos comunitários e a preparação para o canal de mensageria:
 
 ```
 +-----------------------------------------------------------------------------------+
@@ -96,14 +96,14 @@ O diagrama abaixo ilustra o relacionamento relacional do sistema, contemplando a
 +----------------------------------------+     +-----------------------+     +--------------------+
 | PK  id           : UUID                |     | PK  id          : UUID|     | PK  id       : UUID|
 | FK  usuario_id   : UUID                |     | FK  doador_id   : UUID|     | FK  mae_id   : UUID|
-|     cep          : VARCHAR(9)          |     |     titulo      : VC  |     |     titulo   : VC  |
-|     logradouro   : VARCHAR(200)        |     |     descricao   : TEXT|     |     necessid : TEXT|
-|     bairro       : VARCHAR(100)        |     |     categoria   : ENUM|     |     urgencia : ENUM|
-|     cidade       : VARCHAR(100)        |     |     conservacao : ENUM|     |     status   : ENUM|
-|     estado       : VARCHAR(2)          |     |     foto_url    : VC  |     |     criado_em: TIME|
-|     coordenadas  : GEOMETRY(Point)     |     |     status      : ENUM|     +--------------------+
-+----------------------------------------+     |     created_at  : TIME|
-                                               +-----------------------+
+|     cep          : VARCHAR(9) (OPC.)   |     |     titulo      : VC  |     |     titulo   : VC  |
+|     estado       : VARCHAR(2)          |     |     descricao   : TEXT|     |     necessid : TEXT|
+|     cidade       : VARCHAR(100)        |     |     categoria   : ENUM|     |     urgencia : ENUM|
+|     bairro       : VARCHAR(100)        |     |     conservacao : ENUM|     |     status   : ENUM|
+|     zona         : ENUM('NORTE','SUL', |     |     foto_url    : VC  |     |     criado_em: TIME|
+|                    'LESTE','OESTE',    |     |     status      : ENUM|     +--------------------+
+|                    'CENTRO','RURAL')   |     |     created_at  : TIME|
++----------------------------------------+     +-----------------------+
                                                            │ 1
                                                            ▼ N
                                                +---------------------------------------------------+
@@ -142,12 +142,12 @@ O cronograma do projeto distribui as metas técnicas ao longo de 12 semanas de d
 
 | Iteração e Foco | Metas de Backend e Banco de Dados | Metas de Frontend e Interface | DevOps e Critérios de Validação |
 | :--- | :--- | :--- | :--- |
-| **Sprint 1 (Semanas 1 e 2 / Dias 1 a 14)**<br>`Fundação & Auth` | Setup Spring Boot 3 sob Arquitetura Hexagonal; Migrations Flyway das tabelas `usuario` e `endereco`; Spring Security com JWT stateless; Endpoints de registro e login com BCrypt. | Setup React com Vite e Tailwind CSS; Contexto de autenticação (`AuthContext`); Telas de Login e Cadastro com preenchimento automático integrado ao ViaCEP. | Ambiente local orquestrado via Docker Compose (PostgreSQL com PostGIS); Registro e login autenticado com persistência de token no cliente. |
+| **Sprint 1 (Semanas 1 e 2 / Dias 1 a 14)**<br>`Fundação & Auth` | Setup Spring Boot 3 sob Arquitetura Hexagonal; Migrations Flyway das tabelas `usuario` e `endereco` (com recorte territorial minimizado); Spring Security com JWT stateless; Endpoints de registro e login com BCrypt. | Setup React com Vite e Tailwind CSS; Contexto de autenticação (`AuthContext`); Telas de Login e Cadastro com autopreenchimento territorial integrado ao ViaCEP (sem persistir logradouro). | Ambiente local orquestrado via Docker Compose (`postgres:15-alpine`); Registro e login autenticado com persistência de token no cliente. |
 | **Sprint 2 (Semanas 3 e 4 / Dias 15 a 28)**<br>`Fórum Comunitário` | Migrations de `topico` e `comentario`; Endpoints de listagem paginada por categorias; Validador de domínio/anotação `@SemPII` via Regex com HTTP 422 contra vazamento de contatos. | Feed do fórum com paginação; Tela de detalhamento de tópicos com submissão de comentários em atualização otimista; Modal para abertura de novos tópicos com selos visuais de voluntários. | Usuárias conseguem publicar e debater em tópicos comunitários com bloqueio ativo e orientativo a postagens com números de telefone ou CPF. |
-| **Sprint 3 (Semanas 5 e 6 / Dias 29 a 42)**<br>`Vitrine de Enxovais` | Migrations da tabela `item_doacao`; Endpoints de CRUD de itens de puericultura; Filtros por categoria, estado de conservação, município e bairro; Integração com SDK Cloudinary. | Galeria de itens responsiva com filtros combinados; Formulário "Quero Doar" com upload direto de 1 foto via preset Cloudinary e preview; Tela de detalhes do item. | Upload eficiente de imagens com aplicação automática de presets Cloudinary (`f_auto,q_auto,w_500`) e persistência das URLs seguras no banco. |
-| **Sprint 4 (Semanas 7 e 8 / Dias 43 a 56)**<br>`Pedidos de Ajuda` | Migrations da tabela `pedido_ajuda`; Endpoints para cadastro de pedidos com níveis de urgência (`BAIXA`, `MEDIA`, `ALTA`); Endpoint de atendimento direto ("Quero Ajudar"). | Mural de pedidos de ajuda com ordenação por urgência e data; Formulário para publicação de necessidades materiais urgentes por mães solo; Ação "Quero Ajudar" para doadores. | Mães solo cadastram pedidos emergenciais (ex.: fraldas, fórmulas) e doadores conseguem manifestar intenção de atendimento diretamente. |
+| **Sprint 3 (Semanas 5 e 6 / Dias 29 a 42)**<br>`Vitrine de Enxovais` | Migrations da tabela `item_doacao`; Endpoints de CRUD de itens de puericultura; Filtros indexados por categoria, estado de conservação, Estado, Município, Bairro e Zona; Integração com SDK Cloudinary. | Galeria de itens responsiva com filtros combinados; Formulário "Quero Doar" com upload direto de 1 foto via preset Cloudinary e preview; Tela de detalhes do item. | Upload eficiente de imagens com aplicação automática de presets Cloudinary (`f_auto,q_auto,w_500`) e persistência das URLs seguras no banco. |
+| **Sprint 4 (Semanas 7 e 8 / Dias 43 a 56)**<br>`Pedidos de Ajuda` | Migrations da tabela `pedido_ajuda`; Endpoints para cadastro de pedidos com níveis de urgência (`BAIXA`, `MEDIA`, `ALTA`) e filtro territorial; Endpoint de atendimento direto ("Quero Ajudar"). | Mural de pedidos de ajuda com ordenação por urgência/data e filtro por Município/Bairro/Zona; Formulário para necessidades materiais urgentes; Ação "Quero Ajudar" para doadores. | Mães solo cadastram pedidos emergenciais (ex.: fraldas, fórmulas) e doadores conseguem manifestar intenção de atendimento diretamente. |
 | **Sprint 5 (Semanas 9 e 10 / Dias 57 a 70)**<br>`Match Seguro & Painel` | Criação de `MatchDoacao` com máquina de estados (duplo aceite); Endpoint de manifestação de interesse; Liberação de link parametrizado do WhatsApp (`wa.me`) pós-aceite; Migrations preparatórias de `conversa`/`mensagem` (V2). | Botão "Quero este Item"; Painel "Minhas Doações e Solicitações" para doadores aprovarem solicitações e ambas as partes acessarem o canal WhatsApp seguro; Gestão de status de conclusão. | Fluxo completo de match com proteção ativa aos telefones das usuárias; Doações concluídas saem da vitrine geral. |
-| **Sprint 6 (Semanas 11 e 12 / Dias 71 a 84)**<br>`Qualidade, CI/CD & Deploy` | Testes de conformidade arquitetural com ArchUnit; Testes de carga com k6 para validação formal de latência (p95 < 300 ms em instâncias aquecidas); Pipeline de CI/CD via GitHub Actions. | Auditoria de acessibilidade e usabilidade móvel (WCAG 2.1 AA e heurísticas para mobile); Ajustes de responsividade em telas a partir de 360 px. | Deploy automatizado da API no Render (Docker), banco PostgreSQL com PostGIS no Supabase/Neon e frontend na Vercel; Validação de testes de ponta a ponta. |
+| **Sprint 6 (Semanas 11 e 12 / Dias 71 a 84)**<br>`Qualidade, CI/CD & Deploy` | Testes de conformidade arquitetural com ArchUnit; Testes de carga com k6 para validação formal de latência (p95 < 300 ms em instâncias aquecidas); Pipeline de CI/CD via GitHub Actions. | Auditoria de acessibilidade e usabilidade móvel (WCAG 2.1 AA e heurísticas para mobile); Ajustes de responsividade em telas a partir de 360 px. | Deploy automatizado da API no Render (Docker), banco PostgreSQL 15+ no Supabase/Neon e frontend na Vercel; Validação de testes de ponta a ponta. |
 
 ## 9. CONTRIBUIÇÕES ESPERADAS E CRITÉRIOS DE AVALIAÇÃO ACADÊMICA
 

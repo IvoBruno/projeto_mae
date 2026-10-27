@@ -23,7 +23,7 @@ Adotar **arquitetura desacoplada com SPA no frontend e Arquitetura Hexagonal (Po
   - **Adaptadores de Saída (Driven Adapters):**
     - **Persistência:** Implementações das portas de saída utilizando Spring Data JPA / Hibernate, com entidades JPA específicas (`*Entity`) e mappers bidirecionais para as entidades de domínio.
     - **Serviços Externos:** Clientes de integração (ex.: SDK Cloudinary para upload de imagens).
-- **Banco:** PostgreSQL 15+ com PostGIS acessado exclusivamente por meio dos adaptadores de saída de persistência.
+- **Banco:** PostgreSQL 15+ acessado exclusivamente por meio dos adaptadores de saída de persistência, com indexação B-Tree para filtros territoriais administrativos.
 - **Contrato de API:** Descrito via OpenAPI (springdoc) para guiar o consumo pelo frontend.
 
 ## Alternativas consideradas

@@ -6,7 +6,7 @@ Rede digital solidária de apoio a mães solo (IFPI — Campus Parnaíba). Este 
 
 | Documento                                                                     | Conteúdo                                                                          |
 | :---------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
-| [Requisitos Funcionais](requisitos/requisitos-funcionais.md)                  | RF-01 … RF-28, agrupados por módulo e sprint                                      |
+| [Requisitos Funcionais](requisitos/requisitos-funcionais.md)                  | RF-01 … RF-27, agrupados por módulo e sprint                                      |
 | [Requisitos Não Funcionais](requisitos/requisitos-nao-funcionais.md)          | RNF-01 … RNF-25, por atributo de qualidade                                        |
 | [ADRs](adr/README.md)                                                         | Registros de Decisões Arquiteturais (ADR-0001 … ADR-0013)                         |
 | [Mapeamento Teórico-Tecnológico](../artigos/MAPEAMENTO_TEORICO_REQUISITOS.md) | Articulação entre literatura científica (artigos em PDF) e requisitos/ADRs (ABNT) |

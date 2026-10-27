@@ -1,8 +1,8 @@
 # ADR-0010: Match seguro via `MatchDoacao` com duplo aceite e link WhatsApp
 
 - **Status:** Aceito
-- **Data:** 2026-10-13 (atualizado conforme resolução Q-01 e Q-10)
-- **Requisitos relacionados:** RF-20b, RF-21, RF-22, RF-24, RF-28, RNF-12
+- **Data:** 2026-10-27 (atualizado conforme resolução Q-01, Q-02 e Q-10)
+- **Requisitos relacionados:** RF-20b, RF-21, RF-22, RF-24, RF-27, RNF-12
 
 ## Contexto
 
@@ -17,7 +17,7 @@ Adotar o **Fluxo de Match Seguro com Duplo Aceite** mediado pela entidade `Match
    - O backend registra o match com status inicial **`SOLICITADO`**.
    - **Nenhum telefone é revelado** neste momento.
 2. **Avaliação e Aceite do Doador (Passo 2):**
-   - O doador recebe um alerta no seu painel ("Minhas Doações"), visualizando apenas o **primeiro nome e bairro** da solicitante.
+   - O doador recebe um alerta no seu painel ("Minhas Doações"), visualizando apenas o **primeiro nome e o recorte territorial (`cidade`, `bairro` e `zona`, quando informada)** da solicitante.
    - O doador clica em **"Aceitar Doação"**, alterando o status do match para **`EM_NEGOCIACAO`**.
 3. **Liberação Mútua do Link de Contato (Passo 3):**
    - Somente após a aprovação do doador, o backend disponibiliza o link seguro formatado para o WhatsApp:
@@ -28,7 +28,7 @@ Adotar o **Fluxo de Match Seguro com Duplo Aceite** mediado pela entidade `Match
 5. **Simetria para Pedidos de Ajuda ([Q-10](../historico-deliberacoes.md)):**
    - No mural de pedidos de urgência, o doador clica em "Quero Ajudar", gerando contato seguro via WhatsApp com a mãe solicitante; a autora pode marcar o pedido como `ATENDIDO`.
 6. **Evolução para V2:**
-   - As tabelas `conversa` e `mensagem` com `canal_utilizado = CHAT` são criadas nas migrations da Sprint 5 apenas como base arquitetural para um futuro chat interno totalmente integrado, sem intermediação pelo WhatsApp ([RF-28](file:///home/ivo/Projetos/projeto_mae/docs/requisitos/requisitos-funcionais.md)).
+   - As tabelas `conversa` e `mensagem` com `canal_utilizado = CHAT` são criadas nas migrations da Sprint 5 apenas como base arquitetural para um futuro chat interno totalmente integrado, sem intermediação pelo WhatsApp ([RF-27](file:///home/ivo/Projetos/projeto_mae/docs/requisitos/requisitos-funcionais.md)).
 
 ## Alternativas consideradas
 

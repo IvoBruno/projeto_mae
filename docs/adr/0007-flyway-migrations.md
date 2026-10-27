@@ -10,7 +10,7 @@ O esquema evolui a cada sprint (S1: `usuario`/`endereco`; S2: `topico`/`comentar
 
 ## Decisão
 
-Usar **Flyway** com scripts SQL versionados em `src/main/resources/db/migration` (`V1__usuario_endereco.sql`, …). O Hibernate é configurado com `ddl-auto=validate`, nunca `update`. A extensão PostGIS é criada em uma migration.
+Usar **Flyway** com scripts SQL versionados em `src/main/resources/db/migration` (`V1__usuario_endereco.sql`, …), incluindo a criação determinística dos tipos enumerados e dos índices territoriais B-Tree. O Hibernate é configurado com `ddl-auto=validate`, nunca `update`.
 
 ## Alternativas consideradas
 
