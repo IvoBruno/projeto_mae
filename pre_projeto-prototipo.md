@@ -83,6 +83,10 @@ A partir desse cenário, define-se a seguinte questão norteadora para o trabalh
 
 ### 3.1 Relevância Social e Empírica
 
+A proposta do aplicativo divide-se em duas frentes principais de atuação social. A primeira refere-se ao fórum comunitário, no qual será possível criar tópicos sobre assuntos específicos da maternidade ou publicar dúvidas para debate com os demais membros da plataforma. O objetivo desse espaço é funcionar como uma rede de apoio direta para as mães solo, permitindo a interação tanto com outras mulheres em situações similares quanto com especialistas voluntários dispostos a repassar orientações técnicas. O intuito principal é gerar conexão interpessoal, conforme defendido por Brito, Almeida Junior e Medeiros (2022, p. 692): "Nessa perspectiva, os suportes online, ou apoio social virtual, podem ser procurados como uma alternativa aos grupos de apoio tradicionais, presenciais, por serem mais acessíveis. Tais grupos online geralmente têm um modus operandi que privilegia a interação entre usuários e a aprendizagem colaborativa".
+
+A segunda frente abrange o painel Vitrine de Doações e Pedidos de Ajuda, voltado a centralizar a oferta de itens para doação e os pedidos de materiais necessários às mães e seus filhos. Essa funcionalidade justifica-se pelos dados do IBGE sobre o alto volume de famílias beneficiárias do Programa Bolsa Família em Parnaíba, voltado a pessoas em situação de vulnerabilidade social. Para manter a simplicidade e a segurança das usuárias, o contato final ocorre fora da plataforma: como o sistema não possui chat interno, o número de telefone é direcionado ao aplicativo WhatsApp somente quando ambas as partes concordam com a doação.
+
 ### 3.2 Relevância Científica e Tecnológica
 
 ## 4 OBJETIVOS DO TRABALHO
@@ -93,9 +97,11 @@ Desenvolver um aplicativo móvel voltado à criação de uma rede digital de apo
 
 ### 4.2 Objetivos Específicos
 
-No escopo proposto, temos duas esferas principais a serem abordadas. A primeira refere-se ao fórum, onde existirá a possibilidade de criação de tópicos sobre determinados assuntos ou a publicação de dúvidas por parte dos usuários, a serem sanadas e/ou debatidas com os demais usuários. O objetivo desta esfera é servir como rede de apoio para as "mães solo". Aqui haverá a possibilidade de interação tanto com outras mulheres em situações similares, quanto com especialistas voluntários que podem passar informações mais técnicas e detalhadas para o público. O intuito principal é o de geração de conexão interpessoal, conforme defendido por Brito, Almeida Junior e Medeiros (2022, p. 692): "Nessa perspectiva, os suportes online, ou apoio social virtual, podem ser procurados como uma alternativa aos grupos de apoio tradicionais, presenciais, por serem mais acessíveis. Tais grupos online geralmente têm um modus operandi que privilegia a interação entre usuários e a aprendizagem colaborativa".
-
-A outra esfera abrange o painel Vitrine de Doações e Pedidos de Ajuda, onde o objetivo é centralizar as trocas de informações tanto relacionadas a itens a serem doados quanto a itens necessários a quem realiza a publicação. O contato é feito diretamente entre os usuários, fora da plataforma, pois a mesma não possui mecanismo de conversa interno, usando número de telefone direcionado ao aplicativo WhatsApp, sendo os dados repassados somente quando ambas as partes concordam com a transação. O objetivo se justifica pelos dados do IBGE sobre famílias beneficiárias do programa Bolsa Família, destinado a pessoas em situação de vulnerabilidade social.
+- Modelar a estrutura do aplicativo utilizando o padrão de Arquitetura Hexagonal (*Ports and Adapters*), isolando as regras de negócio das dependências externas de banco de dados e interface;
+- Implementar o módulo de fórum comunitário para publicação de dúvidas, criação de tópicos por categoria e interação entre mães solo e especialistas voluntários;
+- Desenvolver o módulo de Vitrine de Doações e Pedidos de Ajuda para cadastro, filtragem por bairro/município e solicitação de itens infantis essenciais;
+- Construir o fluxo de consentimento mútuo para redirecionamento seguro ao WhatsApp, garantindo que o telefone de contato só seja compartilhado após o aceite da solicitação;
+- Avaliar o funcionamento dos módulos desenvolvidos por meio de testes automatizados de unidade e integração nas rotas da API e na interface móvel.
 
 ## 5 REFERENCIAL TEÓRICO PRELIMINAR
 
