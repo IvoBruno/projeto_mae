@@ -73,9 +73,9 @@ Diante desse quadro, cabe buscar alternativas práticas que ajudem a amenizar os
 
 O período de gestação e puerpério traz mudanças físicas e psicológicas intensas para a mulher. Como explicam Brito, Almeida Junior e Medeiros (2022, p. 692), “o puerpério é caracterizado como uma fase de transição na vida da mulher, que a torna vulnerável diante da presença de inúmeros desafios físicos e biopsicossociais, como alterações corporais, hormonais, preocupações e inseguranças”. Por conta disso, existe uma necessidade clara de suporte à mãe durante os primeiros anos da criança, sobretudo quando essa mulher se encontra em condição de vulnerabilidade social e cria os filhos sozinha.
 
-Ao observar a realidade do Piauí e, mais especificamente, do município de Parnaíba, os indicadores do Instituto Brasileiro de Geografia e Estatística (IBGE) ajudam a traçar o perfil dessa comunidade. De acordo com o Censo Demográfico (IBGE, 2023), Parnaíba possui 162.159 habitantes, sendo o segundo município mais populoso do estado e o principal polo urbano da Planície Litorânea. No cenário estadual, as mulheres já respondem pela chefia da maioria dos domicílios (50,36%, um salto de 11,61 pontos percentuais em comparação aos 38,75% de 2010), e cerca de 18,11% dos lares são formados por mães solo com seus filhos (IBGE, 2023). Além disso, Parnaíba tem o segundo maior volume de atendimento do Programa Bolsa Família no Piauí, amparando cerca de 18,5 mil famílias (18.549 registros em 2024), atrás somente da capital Teresina (IBGE, 2024).
+Ao observar a realidade do Piauí e, mais especificamente, do município de Parnaíba, os indicadores do Instituto Brasileiro de Geografia e Estatística (IBGE) ajudam a traçar o perfil dessa comunidade. De acordo com o Censo Demográfico (IBGE, 2023), Parnaíba tem 162.159 habitantes. É o segundo município mais populoso do estado e o principal polo urbano da Planície Litorânea. No cenário estadual, as mulheres já respondem pela chefia da maioria dos domicílios (50,36%, um salto de 11,61 pontos percentuais em comparação aos 38,75% de 2010), e cerca de 18,11% dos lares são formados por mães solo com seus filhos (IBGE, 2023). Além disso, Parnaíba tem o segundo maior volume de atendimento do Programa Bolsa Família no Piauí, com média de 18,5 mil famílias atendidas (18.549 registros em 2024), atrás somente da capital Teresina (IBGE, 2024).
 
-Apesar dessa demanda expressiva no município, o apoio comunitário e a doação de itens infantis ainda acontecem de maneira dispersa, muitas vezes restritos a grupos informais em redes sociais abertas. Nesses ambientes, a mãe solo que precisa pedir ajuda com fraldas, leite ou enxoval acaba exposta, sem garantias mínimas de privacidade ou organização dos pedidos.
+Apesar dessa demanda expressiva no município, o apoio comunitário e a doação de itens infantis ainda acontecem de maneira dispersa, muitas vezes restritos a grupos informais em redes sociais abertas. Nesses ambientes, a mãe solo que precisa pedir ajuda com fraldas, leite ou enxoval acaba exposta. Faltam garantias mínimas de privacidade e organização dos pedidos.
 
 A partir desse cenário, define-se a seguinte questão norteadora para o trabalho: **como desenvolver um aplicativo móvel seguro, baseado em Arquitetura Hexagonal e privacidade de dados, que facilite a doação de itens infantis e o apoio mútuo entre mães solo em Parnaíba-PI?**
 
@@ -83,9 +83,9 @@ A partir desse cenário, define-se a seguinte questão norteadora para o trabalh
 
 ### 3.1 Relevância Social e Empírica
 
-A proposta do aplicativo divide-se em duas frentes principais de atuação social. A primeira refere-se ao fórum comunitário, no qual será possível criar tópicos sobre assuntos específicos da maternidade ou publicar dúvidas para debate com os demais membros da plataforma. O objetivo desse espaço é funcionar como uma rede de apoio direta para as mães solo, permitindo a interação tanto com outras mulheres em situações similares quanto com especialistas voluntários dispostos a repassar orientações técnicas. O intuito principal é gerar conexão interpessoal, conforme defendido por Brito, Almeida Junior e Medeiros (2022, p. 692): "Nessa perspectiva, os suportes online, ou apoio social virtual, podem ser procurados como uma alternativa aos grupos de apoio tradicionais, presenciais, por serem mais acessíveis. Tais grupos online geralmente têm um modus operandi que privilegia a interação entre usuários e a aprendizagem colaborativa".
+A proposta do aplicativo divide-se em duas frentes principais de atuação social. A primeira refere-se ao fórum comunitário, no qual será possível criar tópicos sobre assuntos específicos da maternidade ou publicar dúvidas para debate com os demais membros da plataforma. O objetivo desse espaço é funcionar como uma rede de apoio direta para as mães solo. Ali ocorrerá a interação tanto com outras mulheres em situações similares quanto com especialistas voluntários dispostos a repassar orientações técnicas. O intuito principal é gerar conexão interpessoal, conforme defendido por Brito, Almeida Junior e Medeiros (2022, p. 692): "Nessa perspectiva, os suportes online, ou apoio social virtual, podem ser procurados como uma alternativa aos grupos de apoio tradicionais, presenciais, por serem mais acessíveis. Tais grupos online geralmente têm um modus operandi que privilegia a interação entre usuários e a aprendizagem colaborativa".
 
-A segunda frente abrange o painel Vitrine de Doações e Pedidos de Ajuda, voltado a centralizar a oferta de itens para doação e os pedidos de materiais necessários às mães e seus filhos. Essa funcionalidade justifica-se pelos dados do IBGE sobre o alto volume de famílias beneficiárias do Programa Bolsa Família em Parnaíba, voltado a pessoas em situação de vulnerabilidade social. Para manter a simplicidade e a segurança das usuárias, o contato final ocorre fora da plataforma: como o sistema não possui chat interno, o número de telefone é direcionado ao aplicativo WhatsApp somente quando ambas as partes concordam com a doação.
+A segunda frente abrange o painel Vitrine de Doações e Pedidos de Ajuda, voltado a centralizar a oferta de itens para doação e os pedidos de materiais necessários às mães e seus filhos. Essa funcionalidade justifica-se pelos dados do IBGE sobre o alto volume de famílias beneficiárias do Programa Bolsa Família em Parnaíba, voltado a pessoas em situação de vulnerabilidade social. Para manter a simplicidade e a segurança das usuárias, o contato final ocorre fora da plataforma. Como o sistema não possui chat interno, o número de telefone é direcionado ao aplicativo WhatsApp somente quando ambas as partes concordam com a doação.
 
 ### 3.2 Relevância Científica e Tecnológica
 
@@ -93,15 +93,15 @@ A segunda frente abrange o painel Vitrine de Doações e Pedidos de Ajuda, volta
 
 ### 4.1 Objetivo Geral
 
-Desenvolver um aplicativo móvel voltado à criação de uma rede digital de apoio para mães solo em Parnaíba-PI, reunindo em uma mesma plataforma a doação e solicitação de itens essenciais aos primeiros anos da criança (como móveis, enxovais, fórmulas e fraldas) e um fórum seguro para troca de experiências e dúvidas sobre a maternidade, com foco na proteção da privacidade das usuárias.
+Desenvolver um aplicativo móvel voltado à criação de uma rede digital de apoio para mães solo em Parnaíba-PI, com recursos para a doação e solicitação de itens essenciais aos primeiros anos da criança (como móveis, enxovais, fórmulas e fraldas) e um fórum seguro para troca de experiências e dúvidas sobre a maternidade, focado na proteção da privacidade das usuárias.
 
 ### 4.2 Objetivos Específicos
 
-- Modelar a estrutura do aplicativo utilizando o padrão de Arquitetura Hexagonal (*Ports and Adapters*), isolando as regras de negócio das dependências externas de banco de dados e interface;
-- Implementar o módulo de fórum comunitário para publicação de dúvidas, criação de tópicos por categoria e interação entre mães solo e especialistas voluntários;
-- Desenvolver o módulo de Vitrine de Doações e Pedidos de Ajuda para cadastro, filtragem por bairro/município e solicitação de itens infantis essenciais;
-- Construir o fluxo de consentimento mútuo para redirecionamento seguro ao WhatsApp, garantindo que o telefone de contato só seja compartilhado após o aceite da solicitação;
-- Avaliar o funcionamento dos módulos desenvolvidos por meio de testes automatizados de unidade e integração nas rotas da API e na interface móvel.
+- Estruturar a API e o aplicativo no padrão de Arquitetura Hexagonal (*Ports and Adapters*) para separar as regras de negócio do banco de dados e da interface;
+- Construir o fórum comunitário com suporte à criação de tópicos por categoria, envio de dúvidas e respostas de mães solo e especialistas voluntários;
+- Implementar a Vitrine de Doações e Pedidos de Ajuda com busca de itens infantis por estado, município e bairro;
+- Criar o mecanismo de aceite mútuo que libera o contato via WhatsApp apenas depois que as duas partes confirmam a doação;
+- Testar as rotas da API e as telas principais com testes automatizados de unidade e integração.
 
 ## 5 REFERENCIAL TEÓRICO PRELIMINAR
 
@@ -133,7 +133,7 @@ Desenvolver um aplicativo móvel voltado à criação de uma rede digital de apo
 
 ## REFERÊNCIAS
 
-ASSOCIAÇÃO NACIONAL DOS REGISTRADORES DE PESSOAS NATURAIS (ARPEN-BRASIL). **Portal da Transparência do Registro Civil: módulo Pais Ausentes**. Brasília: Arpen-Brasil, 2024. Disponível em: https://transparencia.registrocivil.org.br/painel-registral/pais-ausentes. Acesso em: 27 out. 2026.
+ASSOCIAÇÃO NACIONAL DOS REGISTRADORES DE PESSOAS NATURAIS (ARPEN-BRASIL). **Portal da Transparência do Registro Civil: módulo Pais Ausentes**. Brasília: Arpen-Brasil, 2026. Disponível em: https://transparencia.registrocivil.org.br/painel-registral/pais-ausentes. Acesso em: 27 out. 2026.
 
 BRITO, Renatha Celiana da Silva; ALMEIDA JUNIOR, José Jailson de; MEDEIROS, Anna Cecília Queiroz de. Online no puerpério: interações de um grupo de apoio virtual. **Revista Brasileira de Saúde Materno Infantil**, Recife, v. 22, n. 3, p. 691-697, jul./set. 2022. DOI: https://doi.org/10.1590/1806-9304202200030014.
 
