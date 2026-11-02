@@ -97,7 +97,7 @@ Desenvolver um aplicativo móvel voltado à criação de uma rede digital de apo
 
 ### 4.2 Objetivos Específicos
 
-- Estruturar a API e o aplicativo no padrão de Arquitetura Hexagonal (*Ports and Adapters*) para separar as regras de negócio do banco de dados e da interface;
+- Estruturar a API e o aplicativo no padrão de Arquitetura Hexagonal (_Ports and Adapters_) para separar as regras de negócio do banco de dados e da interface;
 - Construir o fórum comunitário com suporte à criação de tópicos por categoria, envio de dúvidas e respostas de mães solo e especialistas voluntários;
 - Implementar a Vitrine de Doações e Pedidos de Ajuda com busca de itens infantis por estado, município e bairro;
 - Criar o mecanismo de aceite mútuo que libera o contato via WhatsApp apenas depois que as duas partes confirmam a doação;
@@ -133,18 +133,18 @@ Desenvolver um aplicativo móvel voltado à criação de uma rede digital de apo
 
 ## REFERÊNCIAS
 
-ASSOCIAÇÃO NACIONAL DOS REGISTRADORES DE PESSOAS NATURAIS (ARPEN-BRASIL). **Portal da Transparência do Registro Civil: módulo Pais Ausentes**. Brasília: Arpen-Brasil, 2026. Disponível em: https://transparencia.registrocivil.org.br/painel-registral/pais-ausentes. Acesso em: 27 out. 2026.
+ASSOCIAÇÃO NACIONAL DOS REGISTRADORES DE PESSOAS NATURAIS (ARPEN-BRASIL). **Portal da Transparência do Registro Civil: módulo Pais Ausentes**. Brasília: Arpen-Brasil, 2026. Disponível em: <https://transparencia.registrocivil.org.br/painel-registral/pais-ausentes>. Acesso em: 27 out. 2026.
 
-BRITO, Renatha Celiana da Silva; ALMEIDA JUNIOR, José Jailson de; MEDEIROS, Anna Cecília Queiroz de. Online no puerpério: interações de um grupo de apoio virtual. **Revista Brasileira de Saúde Materno Infantil**, Recife, v. 22, n. 3, p. 691-697, jul./set. 2022. DOI: https://doi.org/10.1590/1806-9304202200030014.
+BRITO, Renatha Celiana da Silva; ALMEIDA JUNIOR, José Jailson de; MEDEIROS, Anna Cecília Queiroz de. Online no puerpério: interações de um grupo de apoio virtual. **Revista Brasileira de Saúde Materno Infantil**, Recife, v. 22, n. 3, p. 691-697, jul./set. 2022. DOI: <https://doi.org/10.1590/1806-9304202200030014>.
 
-FEIJÓ, Janaina. Mães solo no mercado de trabalho crescem 1,7 milhão em dez anos. **Blog do IBRE/FGV**, Rio de Janeiro: Fundação Getulio Vargas, 18 maio 2023. Disponível em: https://portal.fgv.br/artigos/maes-solo-mercado-trabalho-crescem-17-milhao-dez-anos. Acesso em: 27 out. 2026.
+FEIJÓ, Janaina. Mães solo no mercado de trabalho crescem 1,7 milhão em dez anos. **Blog do IBRE/FGV**, Rio de Janeiro: Fundação Getulio Vargas, 18 maio 2023. Disponível em: <https://portal.fgv.br/artigos/maes-solo-mercado-trabalho-crescem-17-milhao-dez-anos>. Acesso em: 27 out. 2026.
 
-FINAMORI, Sabrina; BATISTA, Maria Alice Marcelina. Categorias empíricas e analíticas: mães-solo e monoparentalidade feminina. **Mediações - Revista de Ciências Sociais**, Londrina, v. 27, n. 3, p. 1-19, 2022. DOI: https://doi.org/10.5433/2176-6665.2022v27n3e46105.
+FINAMORI, Sabrina; BATISTA, Maria Alice Marcelina. Categorias empíricas e analíticas: mães-solo e monoparentalidade feminina. **Mediações - Revista de Ciências Sociais**, Londrina, v. 27, n. 3, p. 1-19, 2022. DOI: <https://doi.org/10.5433/2176-6665.2022v27n3e46105>.
 
-INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). **Censo Demográfico 2022: composição domiciliar e características da população**. Rio de Janeiro: IBGE, 2023. Disponível em: https://www.ibge.gov.br. Acesso em: 28 out. 2026.
+INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). **Censo Demográfico 2022: composição domiciliar e características da população**. Rio de Janeiro: IBGE, 2023. Disponível em: <https://www.ibge.gov.br>. Acesso em: 28 out. 2026.
 
-INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). **Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua): características gerais dos domicílios e dos moradores 2023**. Rio de Janeiro: IBGE, 2024. Disponível em: https://www.ibge.gov.br. Acesso em: 28 out. 2026.
+INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). **Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua): características gerais dos domicílios e dos moradores 2023**. Rio de Janeiro: IBGE, 2024. Disponível em: <https://www.ibge.gov.br>. Acesso em: 28 out. 2026.
 
-MACHADO, Mariana Silva; PEREIRA, Claudia Regina Ramos. Redes pessoais significativas de mulheres responsáveis por famílias monoparentais em vulnerabilidade social. **Estudos de Psicologia**, Natal, v. 25, n. 4, p. 399-411, 2020. DOI: https://doi.org/10.22491/1678-4669.20200041.
+MACHADO, Mariana Silva; PEREIRA, Claudia Regina Ramos. Redes pessoais significativas de mulheres responsáveis por famílias monoparentais em vulnerabilidade social. **Estudos de Psicologia**, Natal, v. 25, n. 4, p. 399-411, 2020. DOI: <https://doi.org/10.22491/1678-4669.20200041>.
 
 SOUZA, Beatriz Duarte de; JANUÁRIO, Laila Siqueira Ribeiro; LIMA, João Pedro de Amorim Lucena; TEIXEIRA, Keuler Hissa. Mães solo e desigualdades sociais: uma análise regional e educacional no Brasil. _In_: ENCONTRO NACIONAL DE ECONOMIA, 52., 2024. **Anais...** Maceió: Universidade Federal de Alagoas (UFAL/FEAC), 2024.
