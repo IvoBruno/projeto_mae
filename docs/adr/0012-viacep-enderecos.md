@@ -26,4 +26,3 @@ Consultar opcionalmente a API pública **ViaCEP** (`https://viacep.com.br/ws/{ce
 
 - **Positivas:** Preenchimento rápido e padronizado de Estado, Município e Bairro no celular, a custo zero, preservando estritamente a minimização de dados pessoais.
 - **Negativas:** Dependência eventual de disponibilidade da API pública para o atalho automático (mitigada pelo preenchimento/edição manual sempre habilitado e pelo suporte explícito a `zona` para áreas com CEP único).
-

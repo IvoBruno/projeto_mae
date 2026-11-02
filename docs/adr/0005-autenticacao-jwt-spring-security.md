@@ -6,24 +6,24 @@
 
 ## Contexto
 
-A API REST precisa autenticar usuárias e aplicar autorização granular por perfil (`MAE_SOLO`, `DOADOR`, `VOLUNTARIO`, `ADMIN`). O backend deve ser *stateless* para operar com baixo consumo em PaaS gratuito (Render), e o frontend é uma SPA desacoplada hospedada na Vercel (domínio distinto). É necessário definir o mecanismo de autenticação, o ciclo de vida do token e onde armazená-lo no cliente com segurança e viabilidade técnica ([Q-04](../historico-deliberacoes.md)).
+A API REST precisa autenticar usuárias e aplicar autorização granular por perfil (`MAE_SOLO`, `DOADOR`, `VOLUNTARIO`, `ADMIN`). O backend deve ser *stateless* para operar com baixo consumo em PaaS gratuito (Render), e o frontend é uma SPA desacoplada hospedada na Vercel (domínio distinto). É necessário definir o mecanismo de autenticação, o ciclo de vida do token e onde armazená-lo no cliente com segurança e viabilidade técnica ([Q-04](../../outros/historico-deliberacoes.md)).
 
 ## Decisão
 
 1. **Backend (Infraestrutura de Segurança):**
-   - **Spring Security** configurado com `SessionCreationPolicy.STATELESS` e filtro customizado `JwtAuthenticationFilter` (`OncePerRequestFilter`).
-   - Senhas criptografadas exclusivamente com **BCrypt** (fator de custo 10+).
-   - Tokens JWT assinados com algoritmo HMAC-SHA256 (HS256) com chave secreta gerida via variável de ambiente (`JWT_SECRET`).
-   - Tempo de expiração do token configurado entre **2 a 4 horas**, forçando renovação periódica sem exigir infraestrutura de persistência de sessão.
-   - **Autorização (RBAC):** Baseada no enum `USUARIO.perfil`:
-     - `MAE_SOLO`: acesso total para criar e gerenciar pedidos de ajuda, solicitar itens da vitrine e também cadastrar itens de doação para circulação solidária ([Q-07](../historico-deliberacoes.md)).
-     - `DOADOR`: cadastrar itens para doação e manifestar apoio a pedidos de ajuda.
-     - `VOLUNTARIO`: participação comunitária no fórum identificado por selo visual ([Q-08](../historico-deliberacoes.md)).
-     - `ADMIN`: moderação e gestão técnica da plataforma.
+  - **Spring Security** configurado com `SessionCreationPolicy.STATELESS` e filtro customizado `JwtAuthenticationFilter` (`OncePerRequestFilter`).
+  - Senhas criptografadas exclusivamente com **BCrypt** (fator de custo 10+).
+  - Tokens JWT assinados com algoritmo HMAC-SHA256 (HS256) com chave secreta gerida via variável de ambiente (`JWT_SECRET`).
+  - Tempo de expiração do token configurado entre **2 a 4 horas**, forçando renovação periódica sem exigir infraestrutura de persistência de sessão.
+  - **Autorização (RBAC):** Baseada no enum `USUARIO.perfil`:
+    - `MAE_SOLO`: acesso total para criar e gerenciar pedidos de ajuda, solicitar itens da vitrine e também cadastrar itens de doação para circulação solidária ([Q-07](../../outros/historico-deliberacoes.md)).
+    - `DOADOR`: cadastrar itens para doação e manifestar apoio a pedidos de ajuda.
+    - `VOLUNTARIO`: participação comunitária no fórum identificado por selo visual ([Q-08](../../outros/historico-deliberacoes.md)).
+    - `ADMIN`: moderação e gestão técnica da plataforma.
 2. **Frontend (Gerenciamento e Persistência de Sessão):**
-   - O token JWT é armazenado em **`localStorage`** do navegador e injetado no cabeçalho `Authorization: Bearer <token>` em todas as requisições autenticadas via Axios/Fetch interceptors.
-   - Gerenciamento de estado de autenticação centralizado no `AuthContext` do React.
-   - **Mitigação de XSS:** O React escapa valores automaticamente na renderização JSX (proibição de `dangerouslySetInnerHTML`) e o cabeçalho HTTP `Content-Security-Policy` (CSP) é configurado na Vercel para impedir a execução de scripts inline não autorizados.
+  - O token JWT é armazenado em **`localStorage`** do navegador e injetado no cabeçalho `Authorization: Bearer <token>` em todas as requisições autenticadas via Axios/Fetch interceptors.
+  - Gerenciamento de estado de autenticação centralizado no `AuthContext` do React.
+  - **Mitigação de XSS:** O React escapa valores automaticamente na renderização JSX (proibição de `dangerouslySetInnerHTML`) e o cabeçalho HTTP `Content-Security-Policy` (CSP) é configurado na Vercel para impedir a execução de scripts inline não autorizados.
 
 ## Alternativas consideradas
 

@@ -13,14 +13,22 @@ O domínio do EloMaterno é estritamente relacional (usuárias, endereços terri
 Adotar o **PostgreSQL 15+** padrão como Sistema Gerenciador de Banco de Dados relacional, operando exclusivamente com **recorte territorial administrativo** (`Estado`, `Município`, `Bairro` e `Zona`), sem armazenamento nem processamento de posição geográfica:
 
 1. **Minimização de Dados Territoriais (LGPD, art. 6º, III):**
-   - A tabela `ENDERECO` persiste exclusivamente: `id` (`UUID`), `usuario_id` (`UUID`), `cep` (`VARCHAR(9)`, opcional), `estado` (`VARCHAR(2)`), `cidade` (`VARCHAR(100)`), `bairro` (`VARCHAR(100)`) e `zona` (`ENUM('NORTE', 'SUL', 'LESTE', 'OESTE', 'CENTRO', 'RURAL')`, opcional).
-   - **Não são coletados nem persistidos** `logradouro`, número residencial, complemento ou coordenadas geográficas (`latitude`/`longitude`). Mesmo quando o ViaCEP retorna o logradouro no cliente durante o autopreenchimento por CEP, esse campo é descartado antes do envio à API.
+
+- A tabela `ENDERECO` persiste exclusivamente: `id` (`UUID`), `usuario_id` (`UUID`), `cep` (`VARCHAR(9)`, opcional), `estado` (`VARCHAR(2)`), `cidade` (`VARCHAR(100)`), `bairro` (`VARCHAR(100)`) e `zona` (`ENUM('NORTE', 'SUL', 'LESTE', 'OESTE', 'CENTRO', 'RURAL')`, opcional).
+
+- **Não são coletados nem persistidos** `logradouro`, número residencial, complemento ou coordenadas geográficas (`latitude`/`longitude`). Mesmo quando o ViaCEP retorna o logradouro no cliente durante o autopreenchimento por CEP, esse campo é descartado antes do envio à API.
+
 2. **Papel do Atributo `zona`:**
-   - Permite agrupar bairros adjacentes em municípios médios/grandes (`NORTE`, `SUL`, `LESTE`, `OESTE`, `CENTRO`) quando a usuária deseja ampliar a busca além do próprio bairro, bem como contemplar moradoras de comunidades fora do perímetro urbano (`RURAL`) atendidas por CEPs municipais genéricos.
+
+- Permite agrupar bairros adjacentes em municípios médios/grandes (`NORTE`, `SUL`, `LESTE`, `OESTE`, `CENTRO`) quando a usuária deseja ampliar a busca além do próprio bairro, bem como contemplar moradoras de comunidades fora do perímetro urbano (`RURAL`) atendidas por CEPs municipais genéricos.
+
 3. **Estratégia de Indexação Relacional (B-Tree):**
-   - Criação via Flyway de índices relacionais **B-Tree** seletivos e compostos nas colunas de filtragem (`CREATE INDEX idx_endereco_territorio ON endereco (estado, cidade, zona, bairro)`), combinados aos índices de `categoria` e `status` nas tabelas de catálogo (`RNF-04`).
+
+- Criação via Flyway de índices relacionais **B-Tree** seletivos e compostos nas colunas de filtragem (`CREATE INDEX idx_endereco_territorio ON endereco (estado, cidade, zona, bairro)`), combinados aos índices de `categoria` e `status` nas tabelas de catálogo (`RNF-04`).
+
 4. **Padrão de Chaves e Integridade:**
-   - Chaves primárias (PK) padronizadas em `UUID` para todas as entidades, impedindo enumeração sequencial de recursos em URLs públicas.
+
+- Chaves primárias (PK) padronizadas em `UUID` para todas as entidades, impedindo enumeração sequencial de recursos em URLs públicas.
 
 ## Alternativas consideradas
 

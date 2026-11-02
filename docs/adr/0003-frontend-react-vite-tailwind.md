@@ -12,7 +12,7 @@ A interface deve ser responsiva, com foco em acessibilidade e uso em dispositivo
 
 Adotar **React.js com Vite** como SPA e **Tailwind CSS** para estilização utilitária, com:
 
-- Abordagem _mobile-first_ e componentes reutilizáveis (cards de item, formulários, modais).
+- Abordagem *mobile-first* e componentes reutilizáveis (cards de item, formulários, modais).
 - Estado de autenticação em `AuthContext` ([ADR-0005](0005-autenticacao-jwt-spring-security.md)).
 - Roteamento com React Router e rotas protegidas.
 - Linguagem: TypeScript, em linha com a preferência por tipagem estática.

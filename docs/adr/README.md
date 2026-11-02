@@ -25,4 +25,3 @@ Formato: [MADR](https://adr.github.io/madr/) simplificado — Contexto, Decisão
 1. Copie o [template](0000-template.md) para `NNNN-titulo-curto.md` (numeração sequencial).
 2. Preencha as seções e adicione o ADR à tabela acima.
 3. Nunca edite um ADR aceito. Crie um novo ADR e marque o antigo como `Substituído`.
-

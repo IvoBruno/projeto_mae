@@ -6,7 +6,7 @@
 
 ## Contexto
 
-O projeto acadêmico precisa de esteira de integração e entrega contínua (CI/CD) automatizada, certificado SSL/HTTPS provido sem custos e banco relacional gerenciado com retenção permanente de dados (sem expiração de 30/90 dias), operando com custo zero durante a fase de validação e avaliação do TCC ([Q-05](../historico-deliberacoes.md)).
+O projeto acadêmico precisa de esteira de integração e entrega contínua (CI/CD) automatizada, certificado SSL/HTTPS provido sem custos e banco relacional gerenciado com retenção permanente de dados (sem expiração de 30/90 dias), operando com custo zero durante a fase de validação e avaliação do TCC ([Q-05](../../outros/historico-deliberacoes.md)).
 
 ## Decisão
 
@@ -16,9 +16,9 @@ Consolidar a arquitetura de implantação em nuvem com a seguinte divisão de se
 2. **Backend (API Spring Boot):** Hospedado no **Render** executando um container Docker com build multi-stage (Maven + JDK 17 slim), configurado para deploy automático a partir do repositório.
 3. **Banco de Dados Relacional:** Hospedado no **Supabase** ou **Neon**, instâncias gerenciadas de PostgreSQL 15+ gratuitas, sem expiração precoce e com limites generosos para o volume de dados do MVP.
 4. **Segurança e Comunicação:**
-   - HTTPS obrigatório provido automaticamente por certificados emitidos pelas plataformas.
-   - CORS no Spring Boot restrito ao domínio de produção da Vercel (`*.vercel.app`) e ao ambiente local (`http://localhost:5173`).
-   - Variáveis de ambiente (`SPRING_DATASOURCE_URL`, `JWT_SECRET`, credenciais do Cloudinary) configuradas diretamente no painel do Render.
+  - HTTPS obrigatório provido automaticamente por certificados emitidos pelas plataformas.
+  - CORS no Spring Boot restrito ao domínio de produção da Vercel (`*.vercel.app`) e ao ambiente local (`http://localhost:5173`).
+  - Variáveis de ambiente (`SPRING_DATASOURCE_URL`, `JWT_SECRET`, credenciais do Cloudinary) configuradas diretamente no painel do Render.
 
 ## Alternativas consideradas
 
@@ -33,4 +33,4 @@ Consolidar a arquitetura de implantação em nuvem com a seguinte divisão de se
   - Deploy contínuo por `git push` no frontend e backend.
   - PostgreSQL 15+ gerenciado e estável, sem risco de perda de migrations ou expiração precoce.
 - **Negativas / Riscos:**
-  - O container gratuito da API no Render entra em hibernação após 15 minutos de inatividade, gerando *cold start* de aproximadamente 30 a 50 segundos na primeira requisição após o repouso. Esse comportamento é documentado na avaliação acadêmica e não invalida o [RNF-01], cuja medição deve ocorrer em regime aquecido (*warm start*).
+  - O container gratuito da API no Render entra em hibernação após 15 minutos de inatividade, gerando *cold start* de aproximadamente 30 a 50 segundos na primeira requisição após o repouso. Esse comportamento é documentado na avaliação acadêmica e não invalida o **RNF-01**, cuja medição deve ocorrer em regime aquecido (*warm start*).

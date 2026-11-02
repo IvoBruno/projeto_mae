@@ -6,11 +6,11 @@
 
 ## Contexto
 
-Os itens de doação têm fotos. Receber e processar imagens no backend consome banda, CPU e disco efêmero (PaaS gratuito). O README prevê upload direto via _unsigned presets_ e transformações na URL (§5).
+Os itens de doação têm fotos. Receber e processar imagens no backend consome banda, CPU e disco efêmero (PaaS gratuito). O README prevê upload direto via *unsigned presets* e transformações na URL (§5).
 
 ## Decisão
 
-- O frontend envia a imagem **direto ao Cloudinary** usando um _unsigned upload preset_ restrito (formatos e tamanho máximo, pasta fixa).
+- O frontend envia a imagem **direto ao Cloudinary** usando um *unsigned upload preset* restrito (formatos e tamanho máximo, pasta fixa).
 - O backend recebe e persiste apenas a **URL** em `item_doacao.foto_url`, validando que o host é o do Cloudinary.
 - A exibição usa transformações na URL: `f_auto,q_auto,w_500`.
 - O SDK Cloudinary no backend fica reservado para operações administrativas, como a remoção de imagens órfãs.
@@ -25,6 +25,6 @@ Os itens de doação têm fotos. Receber e processar imagens no backend consome 
 
 - **Positivas:** menos carga no backend; imagens otimizadas automaticamente; CDN.
 - **Negativas / riscos:**
-  - _Unsigned presets_ permitem uploads por terceiros que conheçam o preset. Mitigar com limites no preset e revisão de uso.
+  - *Unsigned presets* permitem uploads por terceiros que conheçam o preset. Mitigar com limites no preset e revisão de uso.
   - Dependência de serviço externo e do limite do plano gratuito.
   - Fotos podem conter metadados EXIF/GPS; configurar a remoção no preset (privacidade, [ADR-0009](0009-moderacao-pii-regex.md)).

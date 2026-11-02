@@ -16,11 +16,11 @@ Usar **Java 17+ e Spring Boot 3** como infraestrutura de suporte e injeção de 
   - Adaptadores de entrada utilizam **Spring Web** para expor endpoints REST.
   - Adaptadores de saída de persistência utilizam **Spring Data JPA/Hibernate** para comunicação com PostgreSQL.
   - **Spring Security** gerencia a autenticação e autorização stateless via JWT ([ADR-0005](0005-autenticacao-jwt-spring-security.md)) como componente de infraestrutura/segurança.
-  - **Spring Boot Actuator** provê métricas e _health check_ (`/health`).
+  - **Spring Boot Actuator** provê métricas e *health check* (`/health`).
 - **Organização de Pacotes (Bounded Context + Hexagonal):**
   Dividido por módulos/contextos delimitados (`auth`, `forum`, `vitrine`, `match`), com estrutura interna padronizada:
 
-  ```
+  ```text
   br.edu.ifpi.elomaterno.<modulo>/
   ├── domain/                     <-- Núcleo Puro (sem anotações Spring/JPA)
   │   ├── model/                  (Entidades e Value Objects de negócio)
@@ -43,7 +43,7 @@ Usar **Java 17+ e Spring Boot 3** como infraestrutura de suporte e injeção de 
 
 - **Arquitetura tradicional em camadas (controllers, services, repositories):** Rejeitada por acoplar o modelo de negócio a entidades JPA gerenciadas pelo Hibernate e misturar regras de negócio com anotações de infraestrutura.
 - **Node.js/NestJS:** Uma linguagem em todo o stack, mas com menor tipagem estática e suporte corporativo menos alinhado aos objetivos acadêmicos do projeto.
-- **Quarkus/Micronaut:** _Startup_ mais rápido, mas ecossistema e documentação menos consolidados no contexto local do que Spring Boot 3.
+- **Quarkus/Micronaut:** *Startup* mais rápido, mas ecossistema e documentação menos consolidados no contexto local do que Spring Boot 3.
 
 ## Consequências
 
