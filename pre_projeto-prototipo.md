@@ -121,7 +121,11 @@ Desenvolver um aplicativo móvel voltado à criação de uma rede digital de apo
 
 ### 5.1 A Maternidade Solo no Brasil e a Economia do Cuidado
 
+A maternidade aplica um peso desigual a mulheres e homens no contexto da sociedade contemporanea, desde a gestaćão até a criaćão e suporte financeiro à crianća. Conforme afirmado por Sousa(2025), os homens tem a designaćão prioritária à esfera produtiva, enquanto a esfera reprodutva recai sobre as mulheres. Ao compararmos essa afimraćão com o dado apresentato também por Souza(2025) de que quase metade das mulheres no contexto analisado não recebe pensão alimentícia ou ajuda financeira dos genitores,e também com o cenário descrito por Sousa et al.(2024), onde a mulher está sujeita a uma 'tripla penalidade', sendo essa caracterizada por tempo escasso, renda insuficeinte e ausencia de redes de apoio efetivas, o panorama para as responsabilidades de criaćão dos filhos se torna ainda menos otimista.
+
 ### 5.2 O Paradigma da Tecnologia Social e Redes Colaborativas (RTS)
+
+Uma das ferramtas mais poderosas a disposićão para mitigar, em partes, os problemas enfrentados por mães solo são as interaćões sociais, ainda que virtuais. Como observado por Brito, Almeida Junior e Medeiros (2022),"As mulheres utilizam suas próprias experiências sobre a maternidade na intenção de ajudar outras mulheres, de modo a criar uma rede de apoio (social e emocional), especialmente para as primíparas(mulheres na primera gestaćão), proporcionando informação, incentivo e empatia.", o contato direto com outros individuos que passaram ou passam por situaćões análogas ajuda a criar um sentimento de comunidade e pertencimento, além disso, cria um espaćo seguro para desabafo e ressignificaćão de experiencias angustiantes, como descritpo por Araújo e Amorim (2025).
 
 ### 5.3 Arquitetura Hexagonal (Ports & Adapters) e Blindagem de Domínio
 
@@ -172,3 +176,5 @@ MOURA, Lucas Vieira de; COUTINHO, Emanuel Ferreira. LGPD e requisitos de softwar
 RAYARAO, Surya Rao; DHONE, Rajeshwar; NARZULLAEVA, Ozoda. Hexagonal Architecture and Clean Architecture patterns in enterprise Spring Boot applications: a comprehensive analysis of ports, adapters, and microservices integration. **Authorea Preprints**, Hoboken, p. 1-64, jan. 2026. DOI: <https://doi.org/10.22541/au.176903300.01498666/v1>.
 
 SOUZA, Beatriz Duarte de; JANUÁRIO, Laila Siqueira Ribeiro; LIMA, João Pedro de Amorim Lucena; TEIXEIRA, Keuler Hissa. Mães solo e desigualdades sociais: uma análise regional e educacional no Brasil. _In_: ENCONTRO NACIONAL DE ECONOMIA, 52., 2024. **Anais...** Maceió: Universidade Federal de Alagoas (UFAL/FEAC), 2024.
+
+SOUSA, Andreyna Karollayne Saraiva de. Maternidade solo no Brasil: determinantes sociais da divisão desigual das responsabilidades parentais. 2025. 40 f. Trabalho de Conclusão de Curso (Graduação em Serviço Social) – Centro de Ciências Sociais Aplicadas, Universidade Federal do Rio Grande do Norte, Natal, 2025.
