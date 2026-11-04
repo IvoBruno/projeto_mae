@@ -97,6 +97,12 @@ A segunda frente abrange o painel Vitrine de Doações e Pedidos de Ajuda, volta
 
 ### 3.2 Relevância Científica e Tecnológica
 
+Em grupos de WhatsApp e Facebook já usados pela comunidade, quem pede ou oferece doações acaba expondo o próprio número de telefone para desconhecidos. O EloMaterno resolve esse problema ao adotar a política de _Privacy by Design_ e tratar a proteção de dados como requisito desde o início do projeto. Como apontam Moura e Coutinho (2024, p. 3), "a elicitação dos requisitos de software que precisam estar em conformidade com a LGPD no início do processo é algo essencial". Por conta disso, o acesso à plataforma é controlado por tokens JWT e perfis de permissão (Buçko et al., 2023), enquanto a localização dos itens considera apenas estado, município e bairro. O telefone das usuárias fica oculto no sistema e o redirecionamento para o WhatsApp só ocorre quando as duas partes aceitam a doação.
+
+Outro ponto abordado no trabalho é o uso da Arquitetura Hexagonal (_Ports and Adapters_) junto com testes automatizados. Em uma análise de 83 projetos desenvolvidos por estudantes, De Luca et al. (2025) identificaram que um dos erros mais comuns no meio acadêmico é misturar a camada de tela diretamente com o código de banco de dados, o que dificulta a manutenção. Para evitar essa falha, o núcleo de regras de negócio do EloMaterno fica separado das ferramentas externas (Rayarao; Dhone; Narzullaeva, 2026) e as rotas da API passam por testes de unidade e integração que verificam as respostas do servidor (Baniaș et al., 2021).
+
+Por fim, o código-fonte aberto e a documentação técnica permitem que a própria comunidade e outros estudantes da área de tecnologia usem o sistema como base para novos trabalhos. Além de rodar em serviços gratuitos de nuvem, o projeto deixa uma estrutura pronta para quem quiser evoluir a ferramenta no futuro.
+
 ## 4 OBJETIVOS DO TRABALHO
 
 ### 4.1 Objetivo Geral
@@ -143,7 +149,13 @@ Desenvolver um aplicativo móvel voltado à criação de uma rede digital de apo
 
 ASSOCIAÇÃO NACIONAL DOS REGISTRADORES DE PESSOAS NATURAIS (ARPEN-BRASIL). **Portal da Transparência do Registro Civil: módulo Pais Ausentes**. Brasília: Arpen-Brasil, 2026. Disponível em: <https://transparencia.registrocivil.org.br/painel-registral/pais-ausentes>. Acesso em: 27 out. 2026.
 
+BANIAȘ, Ovidiu; FLOREA, Diana; GYALA, Robert; CURIAC, Daniel-Ioan. Automated specification-based testing of REST APIs. **Sensors**, Basel, v. 21, n. 16, art. 5375, p. 1-20, ago. 2021. DOI: <https://doi.org/10.3390/s21165375>.
+
 BRITO, Renatha Celiana da Silva; ALMEIDA JUNIOR, José Jailson de; MEDEIROS, Anna Cecília Queiroz de. Online no puerpério: interações de um grupo de apoio virtual. **Revista Brasileira de Saúde Materno Infantil**, Recife, v. 22, n. 3, p. 691-697, jul./set. 2022. DOI: <https://doi.org/10.1590/1806-9304202200030014>.
+
+BUÇKO, Ahmet; VISHI, Kamer; KRASNIQI, Bujar; REXHA, Blerim. Enhancing JWT authentication and authorization in web applications based on user behavior history. **Computers**, Basel, v. 12, n. 4, art. 78, p. 1-18, abr. 2023. DOI: <https://doi.org/10.3390/computers12040078>.
+
+DE LUCA, Marco; DI MARTINO, Sergio; DI MEGLIO, Sergio; FASOLINO, Anna Rita; STARACE, Luigi Libero Lucio; TRAMONTANA, Porfirio. Rookie mistakes: measuring software quality in student projects to guide educational enhancement. **arXiv preprint arXiv:2507.12488**, Ithaca, p. 1-18, jul. 2025. Disponível em: <https://arxiv.org/pdf/2507.12488.pdf>. Acesso em: 3 nov. 2026.
 
 FEIJÓ, Janaina. Mães solo no mercado de trabalho crescem 1,7 milhão em dez anos. **Blog do IBRE/FGV**, Rio de Janeiro: Fundação Getulio Vargas, 18 maio 2023. Disponível em: <https://portal.fgv.br/artigos/maes-solo-mercado-trabalho-crescem-17-milhao-dez-anos>. Acesso em: 27 out. 2026.
 
@@ -154,5 +166,9 @@ INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). **Censo Demográfico 20
 INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). **Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua): características gerais dos domicílios e dos moradores 2023**. Rio de Janeiro: IBGE, 2024. Disponível em: <https://www.ibge.gov.br>. Acesso em: 28 out. 2026.
 
 MACHADO, Mariana Silva; PEREIRA, Claudia Regina Ramos. Redes pessoais significativas de mulheres responsáveis por famílias monoparentais em vulnerabilidade social. **Estudos de Psicologia**, Natal, v. 25, n. 4, p. 399-411, 2020. DOI: <https://doi.org/10.22491/1678-4669.20200041>.
+
+MOURA, Lucas Vieira de; COUTINHO, Emanuel Ferreira. LGPD e requisitos de software: desafios e oportunidades de pesquisa. _In_: WORKSHOP SOBRE ASPECTOS SOCIAIS, HUMANOS E ECONÔMICOS DE SOFTWARE (WASHES), 9., 2024, Brasília. **Anais...** Porto Alegre: Sociedade Brasileira de Computação (SBC), 2024. p. 1-6. DOI: <https://doi.org/10.5753/washes.2024.2311>.
+
+RAYARAO, Surya Rao; DHONE, Rajeshwar; NARZULLAEVA, Ozoda. Hexagonal Architecture and Clean Architecture patterns in enterprise Spring Boot applications: a comprehensive analysis of ports, adapters, and microservices integration. **Authorea Preprints**, Hoboken, p. 1-64, jan. 2026. DOI: <https://doi.org/10.22541/au.176903300.01498666/v1>.
 
 SOUZA, Beatriz Duarte de; JANUÁRIO, Laila Siqueira Ribeiro; LIMA, João Pedro de Amorim Lucena; TEIXEIRA, Keuler Hissa. Mães solo e desigualdades sociais: uma análise regional e educacional no Brasil. _In_: ENCONTRO NACIONAL DE ECONOMIA, 52., 2024. **Anais...** Maceió: Universidade Federal de Alagoas (UFAL/FEAC), 2024.
