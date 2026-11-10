@@ -121,23 +121,103 @@ Desenvolver um aplicativo móvel voltado à criação de uma rede digital de apo
 
 ### 5.1 A Maternidade Solo no Brasil e a Economia do Cuidado
 
+A maternidade aplica um peso desigual a mulheres e homens na sociedade, desde a gestação até a criação e suporte financeiro à criança. Conforme afirmado por Sousa (2025), os homens têm a designação prioritária à esfera produtiva, enquanto a esfera reprodutiva recai sobre as mulheres. Ao compararmos essa afirmação com o dado apresentado também por Sousa (2025, p. 28), de que quase metade das mulheres no contexto analisado (47%) não recebe pensão alimentícia ou ajuda financeira dos genitores, e também com o cenário descrito por Souza et al. (2024, p. 5), onde a mulher está sujeita a uma "tripla penalidade" (tempo escasso, renda insuficiente e ausência de redes de apoio efetivas), o panorama para as responsabilidades de criação dos filhos se torna ainda menos otimista.
+
 ### 5.2 O Paradigma da Tecnologia Social e Redes Colaborativas (RTS)
+
+Uma das ferramentas mais poderosas à disposição para amenizar, em partes, os problemas enfrentados por mães solo são as interações sociais, ainda que virtuais. Como observado por Brito, Almeida Junior e Medeiros (2022, p. 694), "As mulheres utilizam suas próprias experiências sobre a maternidade na intenção de ajudar outras mulheres, de modo a criar uma rede de apoio (social e emocional), especialmente para as primíparas [mulheres na primeira gestação], proporcionando informação, incentivo e empatia". O contato direto com outros indivíduos que passaram ou passam por situações análogas ajuda a criar um sentimento de comunidade e pertencimento. Além disso, cria um espaço seguro para desabafo e ressignificação de experiências angustiantes, como descrito por Araújo e Amorim (2025, p. 6).
+
+Para além disso, a criação de uma plataforma centralizada que facilita doações tem impacto direto e imediato na qualidade de vida das mães solo inseridas nos demográficos de vulnerabilidade financeira, pois supre, ao menos parcialmente, a lacuna deixada pela falta de renda apropriada e de apoio financeiro por parte dos genitores. Como observam Araújo e Amorim (2025, p. 9), a renda vinda de programas como o Bolsa Família, "ainda que seja essencial para as despesas básicas do lar, não é suficiente", o que torna o apoio de terceiros decisivo para que essas mães tenham acesso a produtos infantis como enxoval, fraldas, fórmulas ou móveis que elas não conseguiriam comprar por conta própria.
 
 ### 5.3 Arquitetura Hexagonal (Ports & Adapters) e Blindagem de Domínio
 
+Podemos observar, na forma como os projetos estudantis são comumente estruturados, certa tendência a pontos de atrito arquitetônico que geram, a depender do tamanho e da complexidade do projeto, dificuldade de escalabilidade e manutenibilidade. Segundo De Luca et al. (2025), escolhas inadequadas na estrutura do código geram dívida técnica e queda no desempenho e na confiabilidade, e a partir disso podemos entender a relevância que toma o cuidado e a atenção com esses detalhes de projeto.
+
+Ao nos debruçarmos na tarefa de entender onde esses erros mais aparecem, notamos que há uma predominância na questão tangente ao acoplamento, ou seja, não existe uma divisão clara de qual a responsabilidade de cada componente. Isso acaba levando a cenários como o descrito por De Luca et al. (2025, p. 9), em que 25% dos projetos de alunos analisados colocavam chamadas de banco de dados (DAO) diretamente dentro da interface gráfica (GUI). Este trabalho aborda esse cenário com a aplicação formal e, até certo ponto, rígida dos princípios S.O.L.I.D. e dos padrões de projeto chamados de Arquitetura Hexagonal (Rayarao; Dhone; Narzullaeva, 2026), para diminuir o acoplamento e facilitar tanto a leitura e manutenção do código quanto futuras expansões do escopo geral da aplicação.
+
 ### 5.4 Privacidade por Padrão (Privacy by Design) e a LGPD
+
+Observemos a questão da privacidade por dois prismas que podem parecer distintos, mas chegam ao mesmo ponto. O primeiro refere-se ao cuidado necessário com os dados de pessoas em situações de vulnerabilidade econômica e social. Como visto em Araújo e Amorim (2025, p. 11), são frequentes entre mães solo os relatos de "violência doméstica dos tipos física, psicológica, sexual, patrimonial e moral perpetradas pelos ex-companheiros", um dado que pede maior atenção e delicadeza, visto que, ao expor dados sensíveis, corre-se o risco de entregar informações a terceiros mal-intencionados, inclusive ex-parceiros que as usuárias podem estar evitando.
+
+O outro ponto de vista a tratar de segurança é a Lei Geral de Proteção de Dados (LGPD), que legisla sobre a forma como os dados são armazenados e expostos, bem como sobre a clareza para o usuário quanto ao motivo da coleta. Essas diretrizes podem ser, de forma geral, entendidas em Moura e Coutinho (2024, p. 4), quando apontam que "a coleta de dados deve estar associada a uma necessidade ou finalidade específica, bem definida, deve ser clara e estar em conformidade com as diretrizes vigentes na legislação".
 
 ## 6 METODOLOGIA E PROCEDIMENTOS TÉCNICOS PROPOSTOS
 
 ### 6.1 Classificação e Enquadramento Metodológico
 
+A proposta de Pesquisa Aplicada se enquadra perfeitamente no contexto apresentado, gerando assim um produto prático que pretende resolver, ou ao menos amenizar, um problema real e concreto, especialmente, mas não se restringindo, ao cenário local do município de Parnaíba, no Piauí. Temos em mãos um estudo exploratório e de desenvolvimento experimental, pois parte do estudo do contexto e das dificuldades da maternidade solo e de proteção de dados para projetar e construir um produto mínimo viável (MVP) funcional.
+
+Dentro desse ponto de vista, temos duas abordagens igualmente produtivas: a primeira é a qualitativa, onde são abordadas a pesquisa bibliográfica e documental, juntamente com os dados coletados, através dos quais busca-se traduzir uma demanda social de acolhimento e privacidade. A segunda é quantitativa, ao medir parâmetros como tempo de resposta da API e cobertura de testes, por exemplo.
+
 ### 6.2 Ciclo de Desenvolvimento Ágil Adaptado (6 Sprints Quinzenais)
+
+Observando-se o fato de que o desenvolvimento será realizado por apenas um desenvolvedor, foi optado pela adoção de um modelo Scrum/Kanban, com adaptações pertinentes ao escopo e aos recursos disponíveis. Tendo em vista as características citadas, o planejamento se apresenta com a divisão em 6 sprints de duas semanas cada, totalizando 12 semanas de codificação, previstas para abordarem o projeto da seguinte forma:
+
+- _Sprint 1_: Estrutura base em Arquitetura Hexagonal, banco de dados, cadastro com CEP e login (JWT).
+- _Sprint 2_: Fórum comunitário (tópicos, respostas e bloqueio automático de telefone/CPF em postagens abertas).
+- _Sprint 3_: Vitrine de doações de itens infantis com fotos e filtro por estado, cidade e bairro.
+- _Sprint 4_: Mural de pedidos de ajuda para mães solo.
+- _Sprint 5_: Fluxo de aceite mútuo da doação e redirecionamento para o WhatsApp.
+- _Sprint 6_: Testes automatizados finais, ajustes de desempenho e publicação em nuvem gratuita.
 
 ### 6.3 Levantamento Preliminar de Requisitos (RFs e RNFs)
 
+Quadro 1 – Requisitos Funcionais (RF) do MVP EloMaterno
+
+| Código | Requisito                              | Descrição                                                                                                                                                                                                          |
+| ------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| RF01   | Cadastro e Autenticação por Perfil     | Permitir o registro e o login de usuárias com atribuição de papéis (`MAE_SOLO`, `DOADOR`, `VOLUNTARIO`, `ADMIN`) e preenchimento territorial via CEP (Estado, Município, Bairro e Zona), sem armazenar logradouro. |
+| RF02   | Fórum Comunitário Categorizado         | Permitir a criação de tópicos e comentários organizados por categorias (`DUVIDAS`, `DESABAFO`, `DICAS`, `JURIDICO`) com identificação visual para voluntários.                                                     |
+| RF03   | Bloqueio Automático de Dados Sensíveis | Validar no servidor o texto de tópicos e comentários para impedir a publicação acidental de números de telefone, CPFs ou endereços residenciais (retorno HTTP 422).                                                |
+| RF04   | Vitrine Colaborativa de Enxovais       | Permitir o cadastro, a listagem e a filtragem de itens infantis para doação por categoria, estado de conservação, Estado, Município, Bairro e Zona, com envio de foto.                                             |
+| RF05   | Mural de Pedidos de Ajuda              | Permitir que mães solo publiquem demandas materiais classificadas por nível de urgência (`BAIXA`, `MEDIA`, `ALTA`) e que doadores filtrem esses pedidos por recorte territorial.                                   |
+| RF06   | Match de Doação com Aceite Mútuo       | Gerenciar as solicitações de doação (`SOLICITADO`, `EM_NEGOCIACAO`, `CONCLUIDO`, `CANCELADO`) e liberar o link de contato via WhatsApp (`wa.me`) somente após a aprovação do doador.                               |
+| RF07   | Exclusão Lógica e Anonimização         | Permitir que a usuária encerre sua conta a qualquer momento, aplicando exclusão lógica e anonimização de seus dados pessoais identificáveis.                                                                       |
+
+Quadro 2 – Requisitos Não Funcionais (RNF) do MVP EloMaterno
+
+| Código | Requisito                                    | Descrição                                                                                                                                                               |
+| ------ | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RNF01  | Isolamento Arquitetural                      | Estruturar o back-end sob Arquitetura Hexagonal (Ports & Adapters), mantendo o domínio desacoplado de frameworks web e de persistência, verificado via ArchUnit.        |
+| RNF02  | Autenticação Stateless e Criptografia        | Gerenciar sessões via tokens JWT assinados (HS256) e armazenar senhas com algoritmo de hash BCrypt.                                                                     |
+| RNF03  | Privacidade e Minimização Territorial (LGPD) | Restringir a coleta de localização a Estado, Município, Bairro e Zona, sem retenção de rua, número residencial ou coordenadas GPS no banco de dados.                    |
+| RNF04  | Desempenho de Consultas                      | Garantir tempo de resposta inferior a 300 ms no percentil 95 (`p95 < 300 ms`) nas listagens paginadas, utilizando índices compostos B-Tree no banco de dados.           |
+| RNF05  | Otimização de Mídia e Dados Móveis           | Comprimir e redimensionar automaticamente as imagens enviadas à vitrine via CDN (`f_auto,q_auto,w_500`) para reduzir o consumo de franquia móvel das usuárias.          |
+| RNF06  | Responsividade e Acessibilidade Móvel        | Adequar a interface ao padrão mobile-first em telas a partir de 360 px de largura, observando os critérios de contraste e navegação das diretrizes WCAG 2.1 (nível AA). |
+
 ### 6.4 Arquitetura e Pilha Tecnológica Selecionada
 
+Quadro 3 – Pilha Tecnológica (Stack) Selecionada para o EloMaterno
+
+| Camada / Componente        | Tecnologia Selecionada                   | Finalidade no Projeto                                                                                                                |
+| -------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Arquitetura de Software    | Arquitetura Hexagonal (Ports & Adapters) | Isolamento das regras de negócio e das políticas de privacidade em relação ao banco de dados e aos controladores REST.               |
+| Back-end (API REST)        | Java 17+ / Spring Boot 3                 | Construção da API RESTful com tipagem estática, injeção de dependências e validação de regras de domínio.                            |
+| Segurança e Sessão         | Spring Security + JWT + BCrypt           | Autenticação stateless, criptografia de credenciais e controle de acesso baseado em papéis (RBAC).                                   |
+| Front-end (SPA)            | React.js (Vite) + Tailwind CSS           | Construção de interface reativa, componentizada e responsiva (mobile-first).                                                         |
+| Validação de Formulários   | React Hook Form + Zod                    | Validação declarativa de esquemas no navegador com retorno visual imediato antes do envio à API.                                     |
+| Banco de Dados e Migrações | PostgreSQL 15+ / Flyway                  | Persistência relacional com suporte a transações ACID, versionamento de esquema e índices B-Tree compostos para buscas territoriais. |
+| Armazenamento de Imagens   | Cloudinary CDN                           | Hospedagem externa de fotos dos itens doados com compressão automática na entrega.                                                   |
+| Qualidade e Testes         | JUnit 5 + ArchUnit + k6                  | Testes unitários de regras de domínio, verificação automatizada da arquitetura e ensaios de carga da API.                            |
+| Infraestrutura e Deploy    | Docker + Render + Supabase/Neon + Vercel | Conteinerização do ambiente local e publicação contínua em serviços de nuvem de camada gratuita (free tier).                         |
+
 ### 6.5 Procedimentos de Teste e Garantia da Qualidade
+
+Para que as escolhas arquitetônicas descritas anteriormente não fiquem restritas ao campo teórico, o processo de validação do EloMaterno acompanha cada uma das seis _sprints_ de desenvolvimento. O foco central dessa etapa é impedir que erros de implementação comprometam tanto o isolamento das camadas quanto a proteção dos dados pessoais das mães cadastradas.
+
+Na prática, a verificação do _back-end_ divide-se em duas frentes complementares. A primeira utiliza o JUnit 5 para testar de forma isolada as regras de negócio do domínio, como o filtro que bloqueia números de telefone e CPFs no fórum e a exigência de aceite mútuo antes da liberação do link do WhatsApp, além do ArchUnit para checar se nenhuma classe de tela ou de banco de dados violou os limites da Arquitetura Hexagonal. A segunda frente trata das rotas da API REST, ponto em que, conforme demonstrado por Baniaș et al. (2021), faz-se necessário submeter o servidor tanto a requisições válidas quanto a entradas propositalmente incorretas para confirmar se os códigos de retorno HTTP e o tempo de resposta se comportam dentro do esperado.
+
+Por fim, na última _sprint_, entram os ensaios de desempenho e de interface antes da publicação em nuvem. Com o uso da ferramenta k6, serão simulados acessos simultâneos às listagens da vitrine e do fórum para verificar a meta de resposta abaixo de 300 milissegundos, enquanto a interface móvel passará por checagem de responsividade em telas pequenas e de acessibilidade segundo os critérios da WCAG 2.1.
+
+Quadro 4 – Estratégia de Testes e Critérios de Validação do MVP
+
+| Tipo de Teste                           | Ferramenta                   | Alvo de Verificação                                                                         | Critério de Aceite / Meta                                                                                  |
+| --------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Testes de Unidade                       | JUnit 5                      | Regras de negócio do domínio (`@SemPII`, máquina de estados de `MatchDoacao` e anonimização) | Cobertura mínima de 80% nas classes do núcleo de domínio, sem falhas nas regras críticas de privacidade.   |
+| Testes de Arquitetura                   | ArchUnit                     | Isolamento entre o pacote de domínio e os adaptadores externos (REST e JPA)                 | Zero violações de dependência direta entre controladores/interface e camada de banco de dados.             |
+| Testes de Integração da API             | Spring Boot Test / MockMvc   | Contratos das rotas REST, autenticação JWT, permissões por perfil e códigos de erro (HTTP 401, 403, 422) | Retorno correto dos códigos HTTP para entradas válidas e bloqueio efetivo de postagens com dados sensíveis. |
+| Ensaios de Carga e Desempenho           | k6                           | Consultas paginadas da Vitrine de Doações e do Fórum Comunitário com filtros territoriais   | Tempo de resposta no percentil 95 inferior a 300 ms (`p95 < 300 ms`) sob carga simulada.                   |
+| Inspeção de Usabilidade e Acessibilidade | Chrome DevTools / Lighthouse | Telas da aplicação web em resolução móvel (_mobile-first_)                                  | Layout funcional a partir de 360 px de largura e conformidade com os critérios de contraste da WCAG 2.1 (nível AA). |
 
 ## 7 RECURSOS MATERIAIS E ORÇAMENTO PREVISTO
 
@@ -147,9 +227,11 @@ Desenvolver um aplicativo móvel voltado à criação de uma rede digital de apo
 
 ## REFERÊNCIAS
 
+ARAÚJO, Maria Helena Pereira de Oliveira; AMORIM, Betânia Maria Oliveira de. Contos de dor, amor e alegria: representações sociais da maternidade solo. **Psicologia & Sociedade**, Porto Alegre, v. 37, e289724, p. 1-16, 2025. DOI: <https://doi.org/10.1590/1807-0310/2025v37289724>.
+
 ASSOCIAÇÃO NACIONAL DOS REGISTRADORES DE PESSOAS NATURAIS (ARPEN-BRASIL). **Portal da Transparência do Registro Civil: módulo Pais Ausentes**. Brasília: Arpen-Brasil, 2026. Disponível em: <https://transparencia.registrocivil.org.br/painel-registral/pais-ausentes>. Acesso em: 27 out. 2026.
 
-BANIAȘ, Ovidiu; FLOREA, Diana; GYALA, Robert; CURIAC, Daniel-Ioan. Automated specification-based testing of REST APIs. **Sensors**, Basel, v. 21, n. 16, art. 5375, p. 1-20, ago. 2021. DOI: <https://doi.org/10.3390/s21165375>.
+BANIAȘ, Ovidiu; FLOREA, Diana; GYALAI, Robert; CURIAC, Daniel-Ioan. Automated specification-based testing of REST APIs. **Sensors**, Basel, v. 21, n. 16, art. 5375, p. 1-20, ago. 2021. DOI: <https://doi.org/10.3390/s21165375>.
 
 BRITO, Renatha Celiana da Silva; ALMEIDA JUNIOR, José Jailson de; MEDEIROS, Anna Cecília Queiroz de. Online no puerpério: interações de um grupo de apoio virtual. **Revista Brasileira de Saúde Materno Infantil**, Recife, v. 22, n. 3, p. 691-697, jul./set. 2022. DOI: <https://doi.org/10.1590/1806-9304202200030014>.
 
@@ -159,16 +241,14 @@ DE LUCA, Marco; DI MARTINO, Sergio; DI MEGLIO, Sergio; FASOLINO, Anna Rita; STAR
 
 FEIJÓ, Janaina. Mães solo no mercado de trabalho crescem 1,7 milhão em dez anos. **Blog do IBRE/FGV**, Rio de Janeiro: Fundação Getulio Vargas, 18 maio 2023. Disponível em: <https://portal.fgv.br/artigos/maes-solo-mercado-trabalho-crescem-17-milhao-dez-anos>. Acesso em: 27 out. 2026.
 
-FINAMORI, Sabrina; BATISTA, Maria Alice Marcelina. Categorias empíricas e analíticas: mães-solo e monoparentalidade feminina. **Mediações - Revista de Ciências Sociais**, Londrina, v. 27, n. 3, p. 1-19, 2022. DOI: <https://doi.org/10.5433/2176-6665.2022v27n3e46105>.
-
 INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). **Censo Demográfico 2022: composição domiciliar e características da população**. Rio de Janeiro: IBGE, 2023. Disponível em: <https://www.ibge.gov.br>. Acesso em: 28 out. 2026.
 
 INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). **Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua): características gerais dos domicílios e dos moradores 2023**. Rio de Janeiro: IBGE, 2024. Disponível em: <https://www.ibge.gov.br>. Acesso em: 28 out. 2026.
 
-MACHADO, Mariana Silva; PEREIRA, Claudia Regina Ramos. Redes pessoais significativas de mulheres responsáveis por famílias monoparentais em vulnerabilidade social. **Estudos de Psicologia**, Natal, v. 25, n. 4, p. 399-411, 2020. DOI: <https://doi.org/10.22491/1678-4669.20200041>.
-
-MOURA, Lucas Vieira de; COUTINHO, Emanuel Ferreira. LGPD e requisitos de software: desafios e oportunidades de pesquisa. _In_: WORKSHOP SOBRE ASPECTOS SOCIAIS, HUMANOS E ECONÔMICOS DE SOFTWARE (WASHES), 9., 2024, Brasília. **Anais...** Porto Alegre: Sociedade Brasileira de Computação (SBC), 2024. p. 1-6. DOI: <https://doi.org/10.5753/washes.2024.2311>.
+MOURA, Lucas Vieira de; COUTINHO, Emanuel Ferreira. LGPD e requisitos de software: desafios e oportunidades de pesquisa. In: WORKSHOP SOBRE ASPECTOS SOCIAIS, HUMANOS E ECONÔMICOS DE SOFTWARE (WASHES), 9., 2024, Brasília. **Anais** [...]. Porto Alegre: Sociedade Brasileira de Computação (SBC), 2024. p. 1-6. DOI: <https://doi.org/10.5753/washes.2024.2311>.
 
 RAYARAO, Surya Rao; DHONE, Rajeshwar; NARZULLAEVA, Ozoda. Hexagonal Architecture and Clean Architecture patterns in enterprise Spring Boot applications: a comprehensive analysis of ports, adapters, and microservices integration. **Authorea Preprints**, Hoboken, p. 1-64, jan. 2026. DOI: <https://doi.org/10.22541/au.176903300.01498666/v1>.
 
-SOUZA, Beatriz Duarte de; JANUÁRIO, Laila Siqueira Ribeiro; LIMA, João Pedro de Amorim Lucena; TEIXEIRA, Keuler Hissa. Mães solo e desigualdades sociais: uma análise regional e educacional no Brasil. _In_: ENCONTRO NACIONAL DE ECONOMIA, 52., 2024. **Anais...** Maceió: Universidade Federal de Alagoas (UFAL/FEAC), 2024.
+SOUSA, Andreyna Karollayne Saraiva de. **Maternidade solo no Brasil**: determinantes sociais da divisão desigual das responsabilidades parentais. 2025. 40 f. Trabalho de Conclusão de Curso (Graduação em Serviço Social) – Centro de Ciências Sociais Aplicadas, Universidade Federal do Rio Grande do Norte, Natal, 2025.
+
+SOUZA, Beatriz Duarte de; JANUÁRIO, Laila Siqueira Ribeiro; LIMA, João Pedro de Amorim Lucena; TEIXEIRA, Keuler Hissa. Mães solo e desigualdades sociais: uma análise regional e educacional no Brasil. In: ENCONTRO NACIONAL DE ECONOMIA, 52., 2024, Natal. **Anais** [...]. Niterói: Associação Nacional dos Centros de Pós-Graduação em Economia (ANPEC), 2024. p. 1-20.
