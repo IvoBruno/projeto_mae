@@ -1,0 +1,131 @@
+\section{METODOLOGIA E PROCEDIMENTOS TÉCNICOS PROPOSTOS}
+
+\subsection{Classificação e Enquadramento Metodológico}
+A proposta de Pesquisa Aplicada se enquadra perfeitamente no contexto apresentado, gerando assim um produto prático que pretende resolver, ou ao menos amenizar, um problema real e concreto, especialmente, mas não se restringindo, ao cenário local do município de Parnaíba, no Piauí. Temos em mãos um estudo exploratório e de desenvolvimento experimental, pois parte do estudo do contexto e das dificuldades da maternidade solo e de proteção de dados para projetar e construir um produto mínimo viável (MVP) funcional.
+
+Dentro desse ponto de vista, temos duas abordagens igualmente produtivas: a primeira é a qualitativa, onde são abordadas a pesquisa bibliográfica e documental, juntamente com os dados coletados, através dos quais busca-se traduzir uma demanda social de acolhimento e privacidade. A segunda é quantitativa, ao medir parâmetros como tempo de resposta da API e cobertura de testes, por exemplo.
+
+\subsection{Ciclo de Desenvolvimento Ágil Adaptado (6 Sprints Quinzenais)}
+Observando-se o fato de que o desenvolvimento será realizado por apenas um desenvolvedor, foi optado pela adoção de um modelo Scrum/Kanban, com adaptações pertinentes ao escopo e aos recursos disponíveis. Tendo em vista as características citadas, o planejamento se apresenta com a divisão em 6 sprints de duas semanas cada, totalizando 12 semanas de codificação, previstas para abordarem o projeto da seguinte forma:
+
+\begin{itemize}
+    \item \textit{Sprint 1}: Estrutura base em Arquitetura Hexagonal, banco de dados, cadastro com CEP e login (JWT).
+    \item \textit{Sprint 2}: Fórum comunitário (tópicos, respostas e bloqueio automático de telefone/CPF em postagens abertas).
+    \item \textit{Sprint 3}: Vitrine de doações de itens infantis com fotos e filtro por estado, cidade e bairro.
+    \item \textit{Sprint 4}: Mural de pedidos de ajuda para mães solo.
+    \item \textit{Sprint 5}: Fluxo de aceite mútuo da doação e redirecionamento para o WhatsApp.
+    \item \textit{Sprint 6}: Testes automatizados finais, ajustes de desempenho e publicação em nuvem gratuita.
+\end{itemize}
+
+\subsection{Levantamento Preliminar de Requisitos (RFs e RNFs)}
+
+\begin{table}[ht]
+\centering
+\caption{Requisitos Funcionais (RF) do MVP EloMaterno}
+\label{tab:rf}
+\small
+\begin{tabular}{lp{4.2cm}p{8.5cm}}
+\toprule
+\textbf{Código} & \textbf{Requisito} & \textbf{Descrição} \\
+\midrule
+RF01 & Cadastro e Autenticação por Perfil & Permitir o registro e o login de usuárias com atribuição de papéis (\texttt{MAE\_SOLO}, \texttt{DOADOR}, \texttt{VOLUNTARIO}, \texttt{ADMIN}) e preenchimento territorial via CEP (Estado, Município, Bairro e Zona), sem armazenar logradouro. \\
+\addlinespace
+RF02 & Fórum Comunitário Categorizado & Permitir a criação de tópicos e comentários organizados por categorias (\texttt{DUVIDAS}, \texttt{DESABAFO}, \texttt{DICAS}, \texttt{JURIDICO}) com identificação visual para voluntários. \\
+\addlinespace
+RF03 & Bloqueio Automático de Dados Sensíveis & Validar no servidor o texto de tópicos e comentários para impedir a publicação acidental de números de telefone, CPFs ou endereços residenciais (retorno HTTP 422). \\
+\addlinespace
+RF04 & Vitrine Colaborativa de Enxovais & Permitir o cadastro, a listagem e a filtragem de itens infantis para doação por categoria, estado de conservação, Estado, Município, Bairro e Zona, com envio de foto. \\
+\addlinespace
+RF05 & Mural de Pedidos de Ajuda & Permitir que mães solo publiquem demandas materiais classificadas por nível de urgência (\texttt{BAIXA}, \texttt{MEDIA}, \texttt{ALTA}) e que doadores filtrem esses pedidos por recorte territorial. \\
+\addlinespace
+RF06 & Match de Doação com Aceite Mútuo & Gerenciar as solicitações de doação (\texttt{SOLICITADO}, \texttt{EM\_NEGOCIACAO}, \texttt{CONCLUIDO}, \texttt{CANCELADO}) e liberar o link de contato via WhatsApp (\texttt{wa.me}) somente após a aprovação do doador. \\
+\addlinespace
+RF07 & Exclusão Lógica e Anonimização & Permitir que a usuária encerre sua conta a qualquer momento, aplicando exclusão lógica e anonimização de seus dados pessoais identificáveis. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Requisitos Não Funcionais (RNF) do MVP EloMaterno}
+\label{tab:rnf}
+\small
+\begin{tabular}{lp{4.5cm}p{8.5cm}}
+\toprule
+\textbf{Código} & \textbf{Requisito} & \textbf{Descrição} \\
+\midrule
+RNF01 & Isolamento Arquitetural & Estruturar o \textit{back-end} sob Arquitetura Hexagonal (\textit{Ports \& Adapters}), mantendo o domínio desacoplado de \textit{frameworks} web e de persistência, verificado via ArchUnit. \\
+\addlinespace
+RNF02 & Autenticação \textit{Stateless} e Criptografia & Gerenciar sessões via tokens JWT assinados (HS256) e armazenar senhas com algoritmo de \textit{hash} BCrypt. \\
+\addlinespace
+RNF03 & Privacidade e Minimização Territorial (LGPD) & Restringir a coleta de localização a Estado, Município, Bairro e Zona, sem retenção de rua, número residencial ou coordenadas GPS no banco de dados. \\
+\addlinespace
+RNF04 & Desempenho de Consultas & Garantir tempo de resposta inferior a 300 ms no percentil 95 ($p95 < 300\text{ ms}$) nas listagens paginadas, utilizando índices compostos B-Tree no banco de dados. \\
+\addlinespace
+RNF05 & Otimização de Mídia e Dados Móveis & Comprimir e redimensionar automaticamente as imagens enviadas à vitrine via CDN (\texttt{f\_auto,q\_auto,w\_500}) para reduzir o consumo de franquia móvel das usuárias. \\
+\addlinespace
+RNF06 & Responsividade e Acessibilidade Móvel & Adequar a interface ao padrão \textit{mobile-first} em telas a partir de 360 px de largura, observando os critérios de contraste e navegação das diretrizes WCAG 2.1 (nível AA). \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Arquitetura e Pilha Tecnológica Selecionada}
+
+\begin{table}[ht]
+\centering
+\caption{Pilha Tecnológica (\textit{Stack}) Selecionada para o EloMaterno}
+\label{tab:stack}
+\small
+\begin{tabular}{lp{4.2cm}p{8cm}}
+\toprule
+\textbf{Camada / Componente} & \textbf{Tecnologia Selecionada} & \textbf{Finalidade no Projeto} \\
+\midrule
+Arquitetura de Software & Arquitetura Hexagonal (\textit{Ports \& Adapters}) & Isolamento das regras de negócio e das políticas de privacidade em relação ao banco de dados e aos controladores REST. \\
+\addlinespace
+\textit{Back-end} (API REST) & Java 17+ / Spring Boot 3 & Construção da API RESTful com tipagem estática, injeção de dependências e validação de regras de domínio. \\
+\addlinespace
+Segurança e Sessão & Spring Security + JWT + BCrypt & Autenticação \textit{stateless}, criptografia de credenciais e controle de acesso baseado em papéis (RBAC). \\
+\addlinespace
+\textit{Front-end} (SPA) & React.js (Vite) + Tailwind CSS & Construção de interface reativa, componentizada e responsiva (\textit{mobile-first}). \\
+\addlinespace
+Validação de Formulários & React Hook Form + Zod & Validação declarativa de esquemas no navegador com retorno visual imediato antes do envio à API. \\
+\addlinespace
+Banco de Dados e Migrações & PostgreSQL 15+ / Flyway & Persistência relacional com suporte a transações ACID, versionamento de esquema e índices B-Tree compostos para buscas territoriais. \\
+\addlinespace
+Armazenamento de Imagens & Cloudinary CDN & Hospedagem externa de fotos dos itens doados com compressão automática na entrega. \\
+\addlinespace
+Qualidade e Testes & JUnit 5 + ArchUnit + k6 & Testes unitários de regras de domínio, verificação automatizada da arquitetura e ensaios de carga da API. \\
+\addlinespace
+Infraestrutura e Deploy & Docker + Render + Supabase/Neon + Vercel & Conteinerização do ambiente local e publicação contínua em serviços de nuvem de camada gratuita (\textit{free tier}). \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Procedimentos de Teste e Garantia da Qualidade}
+Sabemos que definir uma boa arquitetura no papel não garante, por si só, que o software final estará livre de falhas. Por esse motivo, os testes e a validação do EloMaterno foram pensados para caminhar junto com cada uma das seis \textit{sprints}, cuidando para que eventuais descuidos durante a codificação não quebrem o isolamento entre as camadas nem deixem vazar dados pessoais das usuárias.
+
+Dentro do \textit{back-end}, dividimos esse trabalho de verificação em duas partes. Na primeira, usamos o JUnit 5 para testar separadamente as regras de negócio do domínio, como o bloqueio de telefones e CPFs nas postagens do fórum e a trava de aceite mútuo antes de abrir o WhatsApp, junto com o ArchUnit, que confere se nenhuma classe de tela ou de banco invadiu o pacote de domínio da Arquitetura Hexagonal. Já na segunda parte, o foco vai para as rotas da API REST. Aqui seguimos a lógica apontada por \textcite{banias2021}, enviando ao servidor tanto requisições normais quanto dados propositalmente errados, justamente para ter certeza de que os códigos HTTP de erro e o tempo de resposta funcionam como deveriam.
+
+Por último, reservamos a sexta \textit{sprint} para avaliar o comportamento do sistema sob uso mais intenso e em telas de celular antes de subi-lo para a nuvem. Nessa etapa, a ferramenta k6 será usada para simular vários acessos ao mesmo tempo nas listagens da vitrine e do fórum, buscando manter o tempo de resposta abaixo de 300 milissegundos, ao passo que a interface passará por testes em resoluções móveis (a partir de 360 px) e de contraste visual baseados na WCAG 2.1.
+
+\begin{table}[ht]
+\centering
+\caption{Estratégia de Testes e Critérios de Validação do MVP}
+\label{tab:testes}
+\small
+\begin{tabular}{p{3.2cm}p{3.2cm}p{3.8cm}p{4cm}}
+\toprule
+\textbf{Tipo de Teste} & \textbf{Ferramenta} & \textbf{Alvo de Verificação} & \textbf{Critério de Aceite / Meta} \\
+\midrule
+Testes de Unidade & JUnit 5 & Regras de negócio do domínio (\texttt{@SemPII}, máquina de estados de \texttt{MatchDoacao} e anonimização) & Cobertura mínima de 80\% nas classes do núcleo de domínio, sem falhas nas regras críticas de privacidade. \\
+\addlinespace
+Testes de Arquitetura & ArchUnit & Isolamento entre o pacote de domínio e os adaptadores externos (REST e JPA) & Zero violações de dependência direta entre controladores/interface e camada de banco de dados. \\
+\addlinespace
+Testes de Integração da API & Spring Boot Test / MockMvc & Contratos das rotas REST, autenticação JWT, permissões por perfil e códigos de erro (HTTP 401, 403, 422) & Retorno correto dos códigos HTTP para entradas válidas e bloqueio efetivo de postagens com dados sensíveis. \\
+\addlinespace
+Ensaios de Carga e Desempenho & k6 & Consultas paginadas da Vitrine de Doações e do Fórum Comunitário com filtros territoriais & Tempo de resposta no percentil 95 inferior a 300 ms ($p95 < 300\text{ ms}$) sob carga simulada. \\
+\addlinespace
+Inspeção de Usabilidade e Acessibilidade & Chrome DevTools / Lighthouse & Telas da aplicação web em resolução móvel (\textit{mobile-first}) & Layout funcional a partir de 360 px de largura e conformidade com os critérios de contraste da WCAG 2.1 (nível AA). \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,50 @@
+\section{JUSTIFICATIVA}
+
+Tomando como base a realidade do Piauí, os números do Instituto Brasileiro de Geografia e Estatística (IBGE) nos ajudam a entender melhor o perfil da comunidade de mães solo. No recorte estadual, as mulheres já chefiam a maioria dos domicílios (50,36\%, um salto de 11,61 pontos percentuais frente aos 38,75\% de 2010), e cerca de 18,11\% dos lares são compostos por mães solo com seus filhos \cite{ibge2023}.
+
+Pelo Censo Demográfico \cite{ibge2023}, Parnaíba conta com 162.159 habitantes, sendo o segundo município mais populoso do estado e o principal centro urbano da Planície Litorânea, concentrando também o segundo maior volume de atendimento do Programa Bolsa Família no Piauí, com média de 18,5 mil famílias beneficiadas (18.549 registros em 2024), ficando atrás apenas da capital Teresina \cite{ibge2024}. 
+
+Com tais dados em mente, justifica-se a criacão de um espaco onde troca e pedido de itens relacionados á criacão dos filhos é centralizada pela grande relevante presença de mães em situação de vulnerabilidade econômica, facilitando o contato entre quem precisa de doacões e quem tem a possibilidade de doar.
+
+Outra análise necessária é a respeito dos períodos de gestação e puerpério, que trazem mudanças físicas e psicológicas intensas para a mulher. Como explicam \textcite[692]{brito2022}, esse é um momento de transição, tornando a mulher vulnerável a inúmeros desafios físicos e biopsicossociais.
+
+A criacão de um fórum comunitário, no qual será possível criar tópicos sobre assuntos específicos da maternidade ou publicar dúvidas para debate com os demais membros da plataforma, se justifica pelo ambiente onde ocorrerá a interação com outras mulheres em situações similares e com especialistas voluntários dispostos a repassar orientações técnicas. O intuito principal é gerar conexão interpessoal, conforme defendido por \textcite[692]{brito2022}:
+\begin{quote}
+Nessa perspectiva, os suportes online, ou apoio social virtual, podem ser procurados como uma alternativa aos grupos de apoio tradicionais, presenciais, por serem mais acessíveis. Tais grupos online geralmente têm um modus operandi que privilegia a interação entre usuários e a aprendizagem colaborativa.
+\end{quote}
+
+Quando observamos as características socioeconômicas que orbitam a questão da maternidade solo, é importante manter em mente que, como mencionado anteriormente, comumente são mulheres em diversas situações de fragilidade. Por conta disso, os fatores segurança e privacidade adquirem ainda mais importância. O EloMaterno busca tratar essa questão aplicando o conceito de \textit{Privacy by Design}, ou seja, tratando a proteção de dados como requisito básico desde o rascunho do projeto. Isso vai ao encontro do que defendem \textcite[3]{moura2024}, quando afirmam que ``a elicitação dos requisitos de software que precisam estar em conformidade com a LGPD no início do processo é algo essencial''.
+
+Pelo lado da engenharia de software, optamos pelo uso da Arquitetura Hexagonal (\textit{Ports and Adapters}) aliada a testes automatizados. Essa escolha se justifica em dois pontos. O primeiro aspecto de corrobora com a escolha  é o fato de que todas as ferramentas e servicos usados para manter a aplicacão funcionando são gratuitas, ou seja, podem sofrer com alteracoes de limites de uso ou mesmo encerramento de gratuidade. Portanto, ao usar-mos Arquitetura Hexagonal, caso seja necessario migrar para novas alternativas, tudo o que precisa ser alterado é o adaptador em questão. O outro sendo um alerta feito por \textcite{deluca2025}, que ao avaliarem 83 projetos desenvolvidos por estudantes, identificaram que um dos vícios mais comuns no meio acadêmico é misturar código de tela diretamente com chamadas de banco de dados, gerando sistemas difíceis de manter. Para não cair nesse mesmo erro, o núcleo de regras do EloMaterno é mantido separado das ferramentas externas \cite{rayarao2026}, e as rotas da API passam por testes de unidade e integração voltados a conferir se o servidor responde de acordo com o esperado \cite{banias2021}.
+
+Além disso, o fato de o projeto ter código-fonte aberto e documentação acessível abre espaço para que a própria comunidade ou outros alunos de tecnologia aproveitem essa base em trabalhos futuros. Como a aplicação foi pensada para rodar em serviços gratuitos de nuvem, ela entrega uma estrutura pronta e sem custos para quem desejar dar continuidade à ferramenta.
+
+Ao buscar alternativas de aplicações já existentes, encontramos alguns tipos principais de soluções. Primeiro, há plataformas como Peanut \cite{peanut2026} e BabyCenter \cite{babycenter2026}, que oferecem canais de interação e comunidade, ou a iniciativa Yá (AI4Good) \cite{ya2026}, focada no suporte de gestão financeira via WhatsApp para mães solo, sendo que algumas restringem parte de suas ferramentas a planos pagos, como o Peanut Plus.
+
+Em seguida, observam-se aplicações voltadas à doação, troca e venda de itens, seja com foco específico em artigos infantis, como o Givehood \cite{givehood2026}, seja de caráter mais geral entre vizinhos, como o Olio \cite{olio2026} e o Tem Açúcar? \cite{temacucar2026}. Existem também redes como a Cresci e Perdi \cite{crescieperdi2026}, que intermediam a compra e venda de itens infantis usados sob o conceito de ``moda circular'', mas cuja cobrança pelos produtos inviabiliza o atendimento a mães em situação de vulnerabilidade financeira. Assim, embora essas iniciativas atuem de forma direta ou indireta em frentes semelhantes, nenhuma delas unifica gratuidade integral, filtro de proximidade, fórum com proteção de dados e recorte para mães solo como propõe o EloMaterno (Tabela~\ref{tab:comparativo_plataformas}).
+
+\begin{table}[ht]
+\centering
+\caption{Comparativo entre Plataformas Existentes e o EloMaterno}
+\label{tab:comparativo_plataformas}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Plataforma} & \textbf{Foco Principal} & \textbf{Doação Gratuita de Insumos} & \textbf{Filtro por Proximidade} & \textbf{Fórum / Apoio Comunitário} & \textbf{Recorte para Mães Solo} \\
+\midrule
+Peanut & Rede social materna & Não & Sim & Sim & Não (Genérico) \\
+BabyCenter & Conteúdo e comunidade materna & Não & Não & Sim & Não (Genérico) \\
+Yá (AI4Good) & Assistente financeiro para mães solo & Não & Não & Não & Sim \\
+Givehood & Troca/doação infantil local & Sim (Híbrido) & Sim & Não & Não \\
+Olio & Doação geral entre vizinhos & Sim & Sim & Não & Não \\
+Tem Açúcar? & Empréstimo e doação entre vizinhos & Sim (Híbrido) & Sim & Não & Não \\
+Cresci e Perdi & Brechó / Compra e venda infantil & Não (Venda) & Não & Não & Não \\
+\midrule
+\textbf{EloMaterno} & \textbf{Rede de apoio e enxoval} & \textbf{Sim (100\% Gratuito)} & \textbf{Sim} & \textbf{Sim (Com moderação PII)} & \textbf{Sim} \\
+\bottomrule
+\end{tabular}
+}
+\vspace{0.2cm}
+
+{\small Fonte: adaptado pelo autor (2026).}
+\end{table}

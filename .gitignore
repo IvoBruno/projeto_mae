@@ -1,2 +1,14 @@
 /outros
 .markdownlint.json
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.lot
+*.lof
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*-SAVE-ERROR

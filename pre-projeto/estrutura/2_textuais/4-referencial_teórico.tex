@@ -1,0 +1,27 @@
+\section{REFERENCIAL TEÓRICO PRELIMINAR}
+
+\subsection{A Maternidade Solo no Brasil e a Economia do Cuidado}
+A maternidade aplica um peso desigual a mulheres e homens na sociedade, desde a gestação até a criação e suporte financeiro à criança. Conforme afirmado por \textcite{sousa2025}, os homens têm a designação prioritária à esfera produtiva, enquanto a esfera reprodutiva recai sobre as mulheres. Ao compararmos essa afirmação com o dado apresentado também por \textcite[28]{sousa2025}, de que quase metade das mulheres no contexto analisado (47\%) não recebe pensão alimentícia ou ajuda financeira dos genitores, e também com o cenário descrito por \textcite[5]{souza2024}, onde a mulher está sujeita a uma “tripla penalidade” (tempo escasso, renda insuficiente e ausência de redes de apoio efetivas), o panorama para as responsabilidades de criação dos filhos se torna ainda menos otimista.
+
+\subsection{O Paradigma da Tecnologia Social e Redes Colaborativas (RTS)}
+Uma das ferramentas mais poderosas à disposição para amenizar, em partes, os problemas enfrentados por mães solo são as interações sociais, ainda que virtuais. Como observado por \textcite[694]{brito2022}:
+\begin{quote}
+As mulheres utilizam suas próprias experiências sobre a maternidade na intenção de ajudar outras mulheres, de modo a criar uma rede de apoio (social e emocional), especialmente para as primíparas [mulheres na primeira gestação], proporcionando informação, incentivo e empatia.
+\end{quote}
+O contato direto com outros indivíduos que passaram ou passam por situações análogas ajuda a criar um sentimento de comunidade e pertencimento. Além disso, cria um espaço seguro para desabafo e ressignificação de experiências angustiantes, como descrito por \textcite[6]{araujo2025}.
+
+Para além disso, a criação de uma plataforma centralizada que facilita doações tem impacto direto e imediato na qualidade de vida das mães solo inseridas nos demográficos de vulnerabilidade financeira, pois supre, ao menos parcialmente, a lacuna deixada pela falta de renda apropriada e de apoio financeiro por parte dos genitores. Como observam \textcite[9]{araujo2025}, a renda vinda de programas como o Bolsa Família, “ainda que seja essencial para as despesas básicas do lar, não é suficiente”, o que torna o apoio de terceiros decisivo para que essas mães tenham acesso a produtos infantis como enxoval, fraldas, fórmulas ou móveis que elas não conseguiriam comprar por conta própria.
+
+\subsection{Arquitetura Hexagonal (Ports \& Adapters) e Blindagem de Domínio}
+Podemos observar, na forma como os projetos estudantis são comumente estruturados, certa tendência a pontos de atrito arquitetônico que geram, a depender do tamanho e da complexidade do projeto, dificuldade de escalabilidade e manutenibilidade. Segundo \textcite{deluca2025}, escolhas inadequadas na estrutura do código geram dívida técnica e queda no desempenho e na confiabilidade, e a partir disso podemos entender a relevância que toma o cuidado e a atenção com esses detalhes de projeto.
+
+Ao nos debruçarmos na tarefa de entender onde esses erros mais aparecem, notamos que há uma predominância na questão tangente ao acoplamento, ou seja, não existe uma divisão clara de qual a responsabilidade de cada componente. Isso acaba levando a cenários como o descrito por \textcite[9]{deluca2025}, em que 25\% dos projetos de alunos analisados colocavam chamadas de banco de dados (DAO) diretamente dentro da interface gráfica (GUI). Este trabalho aborda esse cenário com a aplicação formal e, até certo ponto, rígida dos princípios S.O.L.I.D. e dos padrões de projeto chamados de Arquitetura Hexagonal \cite{rayarao2026}, para diminuir o acoplamento e facilitar tanto a leitura e manutenção do código quanto futuras expansões do escopo geral da aplicação.
+
+\subsection{Privacidade por Padrão (Privacy by Design) e a LGPD}
+Observemos a questão da privacidade por dois prismas que podem parecer distintos, mas chegam ao mesmo ponto. O primeiro refere-se ao cuidado necessário com os dados de pessoas em situações de vulnerabilidade econômica e social. Como visto em \textcite[11]{araujo2025}, são frequentes entre mães solo os relatos de:
+\begin{quote}
+violência doméstica dos tipos física, psicológica, sexual, patrimonial e moral perpetradas pelos ex-companheiros
+\end{quote}
+um dado que pede maior atenção e delicadeza, visto que, ao expor dados sensíveis, corre-se o risco de entregar informações a terceiros mal-intencionados, inclusive ex-parceiros que as usuárias podem estar evitando.
+
+O outro ponto de vista a tratar de segurança é a Lei Geral de Proteção de Dados (LGPD), que legisla sobre a forma como os dados são armazenados e expostos, bem como sobre a clareza para o usuário quanto ao motivo da coleta. Essas diretrizes podem ser, de forma geral, entendidas em \textcite[4]{moura2024}, quando apontam que ``a coleta de dados deve estar associada a uma necessidade ou finalidade específica, bem definida, deve ser clara e estar em conformidade com as diretrizes vigentes na legislação''.
