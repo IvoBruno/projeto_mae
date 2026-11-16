@@ -1,9 +1,9 @@
-PWD /home/ivo/Projetos/projeto_mae/LateX-Pre-Projeto-IFPI-Modelo/Modelo_Projeto_IFPI
+PWD /home/ivo/Projetos/projeto_mae/pre-projeto
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/ivo/Projetos/projeto_mae/LateX-Pre-Projeto-IFPI-Modelo/Modelo_Projeto_IFPI/main.tex
+INPUT /home/ivo/Projetos/projeto_mae/pre-projeto/main.tex
 OUTPUT main.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
