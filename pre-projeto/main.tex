@@ -10,6 +10,8 @@
 \usepackage{setspace}
 \usepackage{indentfirst}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, calc}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{float}
@@ -52,8 +54,10 @@
 \titleformat{\subsubsection}{\normalfont}{\thesubsubsection}{1em}{}
 
 % Renomear títulos automáticos para o padrão ABNT
-\renewcommand{\listfigurename}{LISTA DE ILUSTRAÇÕES}
-\renewcommand{\listtablename}{LISTA DE TABELAS}
+\addto\captionsbrazil{%
+  \renewcommand{\listfigurename}{LISTA DE ILUSTRAÇÕES}%
+  \renewcommand{\listtablename}{LISTA DE TABELAS}%
+}
 
 % Configuração sumário
 \setcounter{tocdepth}{3} % mostra até a seção terciária (1.1.1)
@@ -125,7 +129,7 @@
 \input{estrutura/1_pre_textuais/capa}
 \input{estrutura/1_pre_textuais/folha_rosto}
 \input{estrutura/1_pre_textuais/folha_aprovacao}
-%\input{estrutura/1_pre_textuais/lista_ilustracoes}
+\input{estrutura/1_pre_textuais/lista_ilustracoes}
 \input{estrutura/1_pre_textuais/lista_quadros_tabelas}
 \input{estrutura/1_pre_textuais/lista_abreviaturas}
 %\input{estrutura/1_pre_textuais/lista_simbolo}

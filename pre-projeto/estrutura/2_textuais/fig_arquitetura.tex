@@ -1,0 +1,154 @@
+\begin{figure}[H]
+\centering
+\singlespacing
+\caption{Arquitetura Hexagonal (\textit{Ports \& Adapters}) proposta para o EloMaterno}
+\label{fig:arquitetura}
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    font=\sffamily\footnotesize,
+    >=Latex,
+    adapter/.style={
+        rectangle, rounded corners=3pt, draw=black!70, line width=0.75pt,
+        fill=gray!10, minimum width=3.45cm, minimum height=1.16cm,
+        align=center, inner sep=4pt
+    },
+    portin/.style={
+        rectangle, rounded corners=2pt, draw=blue!65!black, line width=0.75pt,
+        fill=white, minimum width=3.05cm, minimum height=1.12cm,
+        align=center, inner sep=3pt
+    },
+    portout/.style={
+        rectangle, rounded corners=2pt, draw=teal!65!black, line width=0.75pt,
+        fill=white, minimum width=2.95cm, minimum height=1.12cm,
+        align=center, inner sep=3pt
+    },
+    entity/.style={
+        rectangle, rounded corners=2pt, draw=orange!65!black, line width=0.65pt,
+        fill=white, minimum width=2.95cm, minimum height=0.64cm,
+        align=center, inner sep=2pt
+    },
+    callarrow/.style={->, line width=0.8pt, draw=black!75},
+    implarrow/.style={-{Latex[open, length=6.5pt, width=5.2pt]}, dashed, line width=0.8pt, draw=teal!60!black}
+]
+
+% --- Outer Hexagon: Camada de Aplicação (Ports & Use Cases) ---
+\filldraw[fill=blue!4, draw=blue!55!black, line width=1.15pt]
+    (-5.75, 3.85) -- (-4.35, 4.85) -- (4.35, 4.85) -- (5.75, 3.85) --
+    (5.75, -3.35) -- (4.35, -4.35) -- (-4.35, -4.35) -- (-5.75, -3.35) -- cycle;
+
+\node[font=\sffamily\bfseries\small, text=blue!65!black] at (0, 4.22)
+    {Camada de Aplicação (Casos de Uso e Contratos)};
+
+% Column subheaders inside Hexagon
+\node[font=\sffamily\bfseries\scriptsize, text=blue!70!black] at (-3.85, 3.22)
+    {Portas de Entrada (\textit{In})};
+\node[font=\sffamily\bfseries\scriptsize, text=teal!70!black] at (3.85, 3.22)
+    {Portas de Saída (\textit{Out})};
+
+% --- Inner Hexagon/Core: Núcleo de Domínio ---
+\filldraw[fill=orange!8, draw=orange!65!black, line width=1.15pt]
+    (-1.90, 2.85) -- (-1.30, 3.40) -- (1.30, 3.40) -- (1.90, 2.85) --
+    (1.90, -2.65) -- (1.30, -3.20) -- (-1.30, -3.20) -- (-1.90, -2.65) -- cycle;
+
+\node[font=\sffamily\bfseries\footnotesize, text=orange!55!black, align=center] at (0, 2.58)
+    {Núcleo de Domínio\\[-1pt]{\scriptsize (Java Puro / Regras)}};
+
+% Domain Entities
+\node[entity] (ent1) at (0, 1.50) {\texttt{\textbf{Doacao}}};
+\node[entity] (ent2) at (0, 0.68) {\texttt{\textbf{Pedido}}};
+\node[entity] (ent3) at (0, -0.14) {\texttt{\textbf{MatchDoacao}}};
+\node[entity] (ent4) at (0, -0.96) {\texttt{\textbf{Topico}}};
+\node[entity] (ent5) at (0, -1.78) {\texttt{\textbf{Usuario}} / \texttt{@SemPII}};
+
+\node[font=\sffamily\scriptsize, text=black!70] at (0, -2.65)
+    {Sem \textit{frameworks}};
+
+% --- Driving Ports (Left inside Hexagon: x in [-5.38, -2.32]) ---
+\node[portin] (pin1) at (-3.85, 2.25)
+    {\textbf{Contas e Perfis}\\[-1pt]{\scriptsize \texttt{UsuarioUseCase}}};
+\node[portin] (pin2) at (-3.85, 0.75)
+    {\textbf{Fórum Comunitário}\\[-1pt]{\scriptsize \texttt{TopicoUseCase}}};
+\node[portin] (pin3) at (-3.85, -0.75)
+    {\textbf{Vitrine e Mural}\\[-1pt]{\scriptsize \texttt{Doacao/PedidoUseCase}}};
+\node[portin] (pin4) at (-3.85, -2.25)
+    {\textbf{Match Seguro}\\[-1pt]{\scriptsize \texttt{MatchDoacaoUseCase}}};
+
+% --- Driven Ports (Right inside Hexagon: x in [+2.38, +5.32]) ---
+\node[portout] (pout1) at (3.85, 2.25)
+    {\textbf{Repositórios}\\[-1pt]{\scriptsize \texttt{*RepositoryPort}}};
+\node[portout] (pout2) at (3.85, 0.75)
+    {\textbf{Imagens}\\[-1pt]{\scriptsize \texttt{MidiaStoragePort}}};
+\node[portout] (pout3) at (3.85, -0.75)
+    {\textbf{Consulta de CEP}\\[-1pt]{\scriptsize \texttt{ConsultaCepPort}}};
+\node[portout] (pout4) at (3.85, -2.25)
+    {\textbf{Notificação}\\[-1pt]{\scriptsize \texttt{NotificacaoPort}}};
+
+% --- Driving Adapters (Outside Left: x in [-10.05, -6.55]) ---
+\node[font=\sffamily\bfseries\footnotesize, text=black!80, align=center] at (-8.30, 3.65)
+    {Adaptadores Primários\\[-1pt]{\scriptsize (\textit{Driving} / Entrada)}};
+
+\node[adapter] (adin1) at (-8.30, 2.20)
+    {\textbf{SPA Web Cliente}\\[-1pt]{\scriptsize React.js + Vite + Zod}};
+\node[adapter] (adin2) at (-8.30, 0.15)
+    {\textbf{Controladores REST}\\[-1pt]{\scriptsize Spring Web + Security JWT}};
+\node[adapter] (adin3) at (-8.30, -2.42)
+    {\textbf{Testes Automatizados}\\[-1pt]{\scriptsize JUnit 5 / MockMvc / ArchUnit}};
+
+% --- Driven Adapters (Outside Right: x in [+6.55, +10.05]) ---
+\node[font=\sffamily\bfseries\footnotesize, text=black!80, align=center] at (8.30, 3.65)
+    {Adaptadores Secundários\\[-1pt]{\scriptsize (\textit{Driven} / Saída)}};
+
+\node[adapter] (adout1) at (8.30, 2.25)
+    {\textbf{Persistência Relacional}\\[-1pt]{\scriptsize Spring Data JPA $\rightarrow$ PostgreSQL}};
+\node[adapter] (adout2) at (8.30, 0.75)
+    {\textbf{Armazenamento CDN}\\[-1pt]{\scriptsize Adaptador $\rightarrow$ Cloudinary}};
+\node[adapter] (adout3) at (8.30, -0.75)
+    {\textbf{Busca Territorial}\\[-1pt]{\scriptsize Cliente HTTP $\rightarrow$ API ViaCEP}};
+\node[adapter] (adout4) at (8.30, -2.25)
+    {\textbf{Envio de Alertas}\\[-1pt]{\scriptsize E-mail (SMTP) / \textit{Web Push}}};
+
+% --- Connections: Left Side (Driving -> Ports In -> Core) ---
+\draw[callarrow] (adin1.south) -- node[right, font=\sffamily\scriptsize, text=black!75] {HTTPS/JSON} (adin2.north);
+
+% Bus from Controladores REST (x = -6.08) to all 4 Driving Ports
+\draw[callarrow] (adin2.east) -- (-6.08, 0.15) |- ([yshift=2pt]pin1.west);
+\draw[callarrow] (-6.08, 0.15) |- ([yshift=2pt]pin2.west);
+\draw[callarrow] (-6.08, 0.15) |- ([yshift=2pt]pin3.west);
+\draw[callarrow] (-6.08, 0.15) |- ([yshift=4pt]pin4.west);
+
+% Direct test invocation from Testes Automatizados (straight horizontal at y = -2.42, zero crossings)
+\draw[callarrow, draw=black!55] (adin3.east) -- ([yshift=-5pt]pin4.west);
+
+% Ports In -> Domain Core
+\draw[callarrow, draw=blue!65!black] (pin1.east) -- (-1.90, 2.25);
+\draw[callarrow, draw=blue!65!black] (pin2.east) -- (-1.90, 0.75);
+\draw[callarrow, draw=blue!65!black] (pin3.east) -- (-1.90, -0.75);
+\draw[callarrow, draw=blue!65!black] (pin4.east) -- (-1.90, -2.25);
+
+% Core / Use Cases -> Driven Ports (Uso dos contratos de saída)
+\draw[callarrow, draw=teal!65!black] (1.90, 2.25) -- (pout1.west);
+\draw[callarrow, draw=teal!65!black] (1.90, 0.75) -- (pout2.west);
+\draw[callarrow, draw=teal!65!black] (1.90, -0.75) -- (pout3.west);
+\draw[callarrow, draw=teal!65!black] (1.90, -2.25) -- (pout4.west);
+
+% Driven Adapters -|> Driven Ports (Inversão de Dependência)
+\draw[implarrow] (adout1.west) -- (pout1.east);
+\draw[implarrow] (adout2.west) -- (pout2.east);
+\draw[implarrow] (adout3.west) -- (pout3.east);
+\draw[implarrow] (adout4.west) -- (pout4.east);
+
+% --- Legend Bar at Bottom ---
+\draw[callarrow] (-7.4, -4.90) -- (-6.4, -4.90);
+\node[anchor=west, font=\sffamily\scriptsize, text=black!80] at (-6.25, -4.90)
+    {Fluxo de acionamento / uso de contrato};
+
+\draw[implarrow] (0.1, -4.90) -- (1.1, -4.90);
+\node[anchor=west, font=\sffamily\scriptsize, text=black!80] at (1.25, -4.90)
+    {Implementação de interface (inversão de dependência validada via ArchUnit)};
+
+\end{tikzpicture}%
+}
+\vspace{0.15cm}
+
+{\small Fonte: autor (2026).}
+\end{figure}

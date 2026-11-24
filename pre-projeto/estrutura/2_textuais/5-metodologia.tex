@@ -109,6 +109,9 @@ RNF06 & Responsividade e Acessibilidade Móvel & Adequar a interface ao padrão 
 \end{table}
 
 \subsection{Arquitetura e Pilha Tecnológica Selecionada}
+Na organização interna do \textit{back-end}, as entidades centrais do negócio (\texttt{Doacao}, \texttt{Pedido}, \texttt{MatchDoacao}, \texttt{Topico} e \texttt{Usuario}) ficam isoladas no núcleo de domínio, sem depender de bibliotecas externas. Toda comunicação com o meio externo passa por contratos explícitos divididos entre portas de entrada, que expõem os casos de uso aos controladores REST e aos testes, e portas de saída, implementadas pelos adaptadores de banco de dados, envio de imagens, busca de CEP e notificações (Figura~\ref{fig:arquitetura}).
+
+\input{estrutura/2_textuais/fig_arquitetura}
 
 Quanto às decisões de tecnologias, três pontos principais são essenciais: viabilidade de operação a custo zero, operando sempre em camadas gratuitas, maturidade e validação forte de dados tanto no cliente quanto no servidor para evitar falhas em regras sensíveis, e produtividade para que seja viável o desenvolvimento com um único autor (Tabela~\ref{tab:stack}).
 
