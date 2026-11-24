@@ -1,52 +1,88 @@
 \section{METODOLOGIA E PROCEDIMENTOS TÉCNICOS PROPOSTOS}
 
 \subsection{Classificação e Enquadramento Metodológico}
-A proposta de Pesquisa Aplicada se enquadra perfeitamente no contexto apresentado, gerando assim um produto prático que pretende resolver, ou ao menos amenizar, um problema real e concreto, especialmente, mas não se restringindo, ao cenário local do município de Parnaíba, no Piauí. Temos em mãos um estudo exploratório e de desenvolvimento experimental, pois parte do estudo do contexto e das dificuldades da maternidade solo e de proteção de dados para projetar e construir um produto mínimo viável (MVP) funcional.
+Trata-se de uma pesquisa aplicada de natureza tecnológica \cite{wazlawick2014}, cujo resultado é um artefato de software desenvolvido a partir de um problema real. O trabalho também assume caráter exploratório \cite{gil2017}, pois investiga o contexto socioeconômico da maternidade solo, com atenção especial à realidade de Parnaíba, no Piauí, e as exigências de proteção de dados pessoais para projetar e construir um produto mínimo viável (MVP) funcional.
 
-Dentro desse ponto de vista, temos duas abordagens igualmente produtivas: a primeira é a qualitativa, onde são abordadas a pesquisa bibliográfica e documental, juntamente com os dados coletados, através dos quais busca-se traduzir uma demanda social de acolhimento e privacidade. A segunda é quantitativa, ao medir parâmetros como tempo de resposta da API e cobertura de testes, por exemplo.
+Quanto à abordagem, o projeto combina uma etapa qualitativa e outra quantitativa. Na frente qualitativa, os requisitos funcionais e não funcionais apresentados na Seção 5.3 foram levantados a partir de três fontes principais: a revisão bibliográfica sobre as demandas emocionais, materiais e de segurança relatadas por mães solo na literatura recente \cite{brito2022, araujo2025, sousa2025}; a análise documental da LGPD e de engenharia de requisitos voltada à privacidade \cite{brasil2018, moura2024}; e o estudo comparativo das funcionalidades e limitações das plataformas similares avaliadas na Seção 2, além do sistema de doações descrito por \textcite{santos2026}. Por não envolver aplicação de questionários ou entrevistas diretas com mães, que constituem um público em situação de vulnerabilidade cuja abordagem exigiria submissão prévia ao Comitê de Ética em Pesquisa (Resolução CNS nº 510/2016), o levantamento apoia-se integralmente em fontes secundárias e técnicas. Já a frente quantitativa concentra-se na validação do software construído, medindo indicadores objetivos como o tempo de resposta das rotas da API sob carga e o percentual de cobertura dos testes automatizados.
 
 \subsection{Ciclo de Desenvolvimento Ágil Adaptado (6 Sprints Quinzenais)}
-Observando-se o fato de que o desenvolvimento será realizado por apenas um desenvolvedor, foi optado pela adoção de um modelo Scrum/Kanban, com adaptações pertinentes ao escopo e aos recursos disponíveis. Tendo em vista as características citadas, o planejamento se apresenta com a divisão em 6 sprints de duas semanas cada, totalizando 12 semanas de codificação, previstas para abordarem o projeto da seguinte forma:
+Como o desenvolvimento será conduzido por um único autor, sem a divisão de papéis de equipe prevista no Scrum tradicional, adotou-se um processo iterativo inspirado em Scrum e Kanban, mantendo práticas compatíveis com o trabalho individual: \textit{backlog} priorizado, \textit{sprints} de duas semanas, controle visual de tarefas em quadro Kanban no GitHub Projects e revisão quinzenal das entregas com o orientador. Ao todo, o cronograma de implementação divide-se em 6 \textit{sprints} quinzenais (12 semanas de codificação), organizadas da seguinte forma:
 
 \begin{itemize}
     \item \textit{Sprint 1}: Estrutura base em Arquitetura Hexagonal, banco de dados, cadastro com CEP e login (JWT).
     \item \textit{Sprint 2}: Fórum comunitário (tópicos, respostas e bloqueio automático de telefone/CPF em postagens abertas).
     \item \textit{Sprint 3}: Vitrine de doações de itens infantis com fotos e filtro por estado, cidade e bairro.
     \item \textit{Sprint 4}: Mural de pedidos de ajuda para mães solo.
-    \item \textit{Sprint 5}: Fluxo de aceite mútuo da doação e redirecionamento para o WhatsApp.
+    \item \textit{Sprint 5}: Fluxo de conexão da doação e redirecionamento para o WhatsApp. Anonimização e exclusão de dados.
     \item \textit{Sprint 6}: Testes automatizados finais, ajustes de desempenho e publicação em nuvem gratuita.
 \end{itemize}
 
 \subsection{Levantamento Preliminar de Requisitos (RFs e RNFs)}
+O conjunto de requisitos foi pensado com base em todo o levantamento teórico como principal fonte, mas se adequando ao cronograma de somente 6 \textit{sprints}, atendendo aos principais pontos da aplicação: apoio informativo/emocional e acesso a itens infantis (Tabela~\ref{tab:rf}).
 
 \begin{table}[H]
 \centering
+\singlespacing
 \caption{Requisitos Funcionais (RF) do MVP EloMaterno}
 \label{tab:rf}
 \small
-\begin{tabular}{p{1.2cm}p{4.3cm}p{9.2cm}}
+\begin{tabular}{p{0.9cm}p{3.6cm}p{10.2cm}}
 \toprule
 \textbf{Código} & \textbf{Requisito} & \textbf{Descrição} \\
 \midrule
-RF01 & Cadastro e Autenticação por Perfil & Permitir o registro e o login de usuárias com atribuição de papéis (\texttt{MAE\_SOLO}, \texttt{DOADOR}, \texttt{VOLUNTARIO}, \texttt{ADMIN}) e preenchimento territorial via CEP (Estado, Município, Bairro e Zona), sem armazenar logradouro. \\
-\addlinespace
-RF02 & Fórum Comunitário Categorizado & Permitir a criação de tópicos e comentários organizados por categorias (\texttt{DUVIDAS}, \texttt{DESABAFO}, \texttt{DICAS}, \texttt{JURIDICO}) com identificação visual para voluntários. \\
-\addlinespace
-RF03 & Bloqueio Automático de Dados Sensíveis & Validar no servidor o texto de tópicos e comentários para impedir a publicação acidental de números de telefone, CPFs ou endereços residenciais (retorno HTTP 422). \\
-\addlinespace
-RF04 & Vitrine Colaborativa de Enxovais & Permitir o cadastro, a listagem e a filtragem de itens infantis para doação por categoria, estado de conservação, Estado, Município, Bairro e Zona, com envio de foto. \\
-\addlinespace
+RF01 & Cadastro e Autenticação por Perfil & Permitir o registro e o login por perfil (\texttt{MAE\_SOLO}, \texttt{DOADOR}, \texttt{VOLUNTARIO}, \texttt{ADMIN}), com registro profissional opcional (como OAB, COREN ou CRP) para voluntários. O CEP preenche automaticamente Estado, Município, Bairro e Zona (\texttt{LESTE}, \texttt{NORTE}, \texttt{OESTE}, \texttt{SUL}, \texttt{CENTRO}, \texttt{RURAL} ou em branco), sendo descartado sem salvar logradouro. \\
+\addlinespace[3pt]
+RF02 & Fórum Comunitário Categorizado & Permitir a criação de tópicos e comentários por categorias (\texttt{DUVIDAS}, \texttt{DESABAFO}, \texttt{DICAS}, \texttt{JURIDICO}), com identificação visual para voluntários e \textit{badge} da área específica aos que informarem registro profissional. \\
+\addlinespace[3pt]
+RF03 & Bloqueio de Dados Sensíveis & Validar o texto de tópicos e comentários para impedir a publicação acidental de números de telefone ou CPFs (retorno HTTP 422). Endereços residenciais passam por moderação manual. \\
+\addlinespace[3pt]
+RF04 & Vitrine Colaborativa de Enxovais & Permitir o cadastro, a listagem e a filtragem de itens infantis para doação por categoria, estado de conservação, Estado, Município, Bairro e Zona, com envio de foto. Arquivos de fotos deverão ter os metadados excluídos antes do envio ao armazenamento. \\
+\addlinespace[3pt]
 RF05 & Mural de Pedidos de Ajuda & Permitir que mães solo publiquem demandas materiais classificadas por nível de urgência (\texttt{BAIXA}, \texttt{MEDIA}, \texttt{ALTA}) e que doadores filtrem esses pedidos por recorte territorial. \\
-\addlinespace
-RF06 & Match de Doação com Aceite Mútuo & Gerenciar as solicitações de doação (\texttt{SOLICITADO}, \texttt{EM\_NEGOCIACAO}, \texttt{CONCLUIDO}, \texttt{CANCELADO}) e liberar o link de contato via WhatsApp (\texttt{wa.me}) somente após a aprovação do doador. \\
-\addlinespace
+\addlinespace[3pt]
+RF06 & Match de Doação & Gerenciar as solicitações (\texttt{SOLICITADO}, \texttt{ANUNCIADO}, \texttt{EM\_NEGOCIACAO}, \texttt{CONCLUIDO}, \texttt{CANCELADO}), liberar o link do WhatsApp (\texttt{wa.me}) em fluxo seguro e enviar notificações \textit{push} ou por e-mail a cada mudança de status (detalhados na Tabela~\ref{tab:status}). \\
+\addlinespace[3pt]
 RF07 & Exclusão Lógica e Anonimização & Permitir que a usuária encerre sua conta a qualquer momento, aplicando exclusão lógica e anonimização de seus dados pessoais identificáveis. \\
+\addlinespace[3pt]
+RF08 & Denúncia e Bloqueio Preventivo de Usuários & Permitir que a usuária bloqueie imediatamente qualquer perfil suspeito (como ex-companheiros mal-intencionados), ocultando suas postagens, pedidos e solicitações de doação para a conta bloqueada, além de registrar denúncia para análise e banimento pelo perfil \texttt{ADMIN}. \\
 \bottomrule
 \end{tabular}
+\vspace{0.1cm}
+
+{\small Fonte: autor (2026).}
 \end{table}
+
+Para colocar em prática o fluxo seguro citado no \texttt{RF06}, partimos do cuidado de nunca exibir o telefone da mãe beneficiária dentro da plataforma. Na verdade, ela nem precisa informar WhatsApp no cadastro se for apenas pedir ou receber doações. Quando a ajuda começa pelo Mural de Pedidos (\texttt{RF05}), o processo é direto: o doador escolhe a solicitação que deseja atender, informa seu número ao confirmar e o sistema gera o link \texttt{wa.me} visível somente para a autora daquele pedido. Já na Vitrine de Enxovais (\texttt{RF04}), existe uma aprovação antes disso. Essa etapa evita tanto que o anunciante receba dezenas de mensagens ao mesmo tempo quanto que ex-companheiros ou terceiros mal-intencionados publiquem anúncios falsos como isca para descobrir o número das usuárias. Por conta disso, a mãe primeiro demonstra interesse mostrando apenas seu nome ou apelido e bairro, e só depois que o doador aceita atendê-la é que o anúncio trava novas solicitações e libera o WhatsApp dele para ela. Nos dois casos, quem abre o link é sempre a mãe. Antes de sair para o WhatsApp, um aviso rápido na tela lembra de checar o perfil antes de mandar a primeira mensagem, não informar o endereço de casa e marcar a entrega em locais públicos movimentados ou pontos de apoio como o CRAS, seguindo os status da Tabela~\ref{tab:status}.
 
 \begin{table}[H]
 \centering
+\singlespacing
+\caption{Status do fluxo de doação}
+\label{tab:status}
+\small
+\begin{tabular}{p{3.7cm}p{11.0cm}}
+\toprule
+\textbf{Status} & \textbf{Descrição} \\
+\midrule
+\texttt{SOLICITADO} / \texttt{ANUNCIADO} & Pedido de ajuda ou anúncio de doação aberto na plataforma, à espera de um \texttt{DOADOR} ou de uma \texttt{MAE\_SOLO}. \\
+\addlinespace
+\texttt{EM\_NEGOCIACAO} & Atendimento iniciado no mural ou interesse aceito pelo \texttt{DOADOR} na vitrine; a partir daí o item trava novas solicitações e o link \texttt{wa.me} do doador fica visível apenas para a \texttt{MAE\_SOLO} combinar a entrega. \\
+\addlinespace
+\texttt{CONCLUIDO} & Depois da entrega, a \texttt{MAE\_SOLO} marca a doação como concluída. O registro continua salvo para os dois envolvidos, mas deixa de aparecer para o restante da plataforma. \\
+\addlinespace
+\texttt{CANCELADO} & Qualquer uma das partes pode cancelar a combinação enquanto o status for \texttt{EM\_NEGOCIACAO}, escolhendo um motivo pronto ou preenchendo uma justificativa opcional em texto livre. \\
+\bottomrule
+\end{tabular}
+\vspace{0.15cm}
+
+{\small Fonte: autor (2026).}
+\end{table}
+
+Ao elaborar os requisitos não-funcionais, deve-se manter em mente que o público-alvo da aplicação engloba mulheres em situações de vulnerabilidade financeira, costumando usar celulares de entrada, nos norteando em decisões como layout \textit{mobile-first} e compressão de fotos para evitar consumo excessivo de pacotes de dados móveis (Tabela~\ref{tab:rnf}).
+
+\begin{table}[H]
+\centering
+\singlespacing
 \caption{Requisitos Não Funcionais (RNF) do MVP EloMaterno}
 \label{tab:rnf}
 \small
@@ -62,17 +98,23 @@ RNF03 & Privacidade e Minimização Territorial (LGPD) & Restringir a coleta de 
 \addlinespace
 RNF04 & Desempenho de Consultas & Garantir tempo de resposta inferior a 300 ms no percentil 95 ($p95 < 300\text{ ms}$) nas listagens paginadas, utilizando índices compostos B-Tree no banco de dados. \\
 \addlinespace
-RNF05 & Otimização de Mídia e Dados Móveis & Comprimir e redimensionar automaticamente as imagens enviadas à vitrine via CDN (\texttt{f\_auto,q\_auto,w\_500}) para reduzir o consumo de franquia móvel das usuárias. \\
+RNF05 & Otimização de Mídia e Dados Móveis & Imagens da vitrine devem ser entregues com largura máxima de 500 px e tamanho máximo de 100 KB para reduzir o consumo de franquia móvel das usuárias. \\
 \addlinespace
 RNF06 & Responsividade e Acessibilidade Móvel & Adequar a interface ao padrão \textit{mobile-first} em telas a partir de 360 px de largura, observando os critérios de contraste e navegação das diretrizes WCAG 2.1 (nível AA). \\
 \bottomrule
 \end{tabular}
+\vspace{0.15cm}
+
+{\small Fonte: autor (2026).}
 \end{table}
 
 \subsection{Arquitetura e Pilha Tecnológica Selecionada}
 
+Quanto às decisões de tecnologias, três pontos principais são essenciais: viabilidade de operação a custo zero, operando sempre em camadas gratuitas, maturidade e validação forte de dados tanto no cliente quanto no servidor para evitar falhas em regras sensíveis, e produtividade para que seja viável o desenvolvimento com um único autor (Tabela~\ref{tab:stack}).
+
 \begin{table}[H]
 \centering
+\singlespacing
 \caption{Pilha Tecnológica (\textit{Stack}) Selecionada para o EloMaterno}
 \label{tab:stack}
 \small
@@ -97,19 +139,25 @@ Armazenamento de Imagens & Cloudinary CDN & Hospedagem externa de fotos dos iten
 Qualidade e Testes & JUnit 5 + ArchUnit + k6 & Testes unitários de regras de domínio, verificação automatizada da arquitetura e ensaios de carga da API. \\
 \addlinespace
 Infraestrutura e Deploy & Docker + Render + Supabase/Neon + Vercel & Conteinerização do ambiente local e publicação contínua em serviços de nuvem de camada gratuita (\textit{free tier}). \\
+\addlinespace
+Validação de endereços & ViaCEP & API acessada via adaptador que retorna os dados para preenchimento automático dos dados residenciais. \\
 \bottomrule
 \end{tabular}
+\vspace{0.15cm}
+
+{\small Fonte: autor (2026).}
 \end{table}
 
 \subsection{Procedimentos de Teste e Garantia da Qualidade}
 Sabemos que definir uma boa arquitetura no papel não garante, por si só, que o software final estará livre de falhas. Por esse motivo, os testes e a validação do EloMaterno foram pensados para caminhar junto com cada uma das seis \textit{sprints}, cuidando para que eventuais descuidos durante a codificação não quebrem o isolamento entre as camadas nem deixem vazar dados pessoais das usuárias.
 
-Dentro do \textit{back-end}, dividimos esse trabalho de verificação em duas partes. Na primeira, usamos o JUnit 5 para testar separadamente as regras de negócio do domínio, como o bloqueio de telefones e CPFs nas postagens do fórum e a trava de aceite mútuo antes de abrir o WhatsApp, junto com o ArchUnit, que confere se nenhuma classe de tela ou de banco invadiu o pacote de domínio da Arquitetura Hexagonal. Já na segunda parte, o foco vai para as rotas da API REST. Aqui seguimos a lógica apontada por \textcite{banias2021}, enviando ao servidor tanto requisições normais quanto dados propositalmente errados, justamente para ter certeza de que os códigos HTTP de erro e o tempo de resposta funcionam como deveriam.
+Dentro do \textit{back-end}, dividimos esse trabalho de verificação em duas partes. Na primeira, usamos o JUnit 5 para testar separadamente as regras de negócio do domínio, como o bloqueio de telefones e CPFs nas postagens do fórum e a trava de fluxo seguro antes de abrir o WhatsApp, junto com o ArchUnit, que confere se nenhuma classe de tela ou de banco invadiu o pacote de domínio da Arquitetura Hexagonal. Já na segunda parte, o foco vai para as rotas da API REST. Aqui seguimos a lógica apontada por \textcite{banias2021}, enviando ao servidor tanto requisições normais quanto dados propositalmente errados, justamente para ter certeza de que os códigos HTTP de erro e o tempo de resposta funcionam como deveriam.
 
-Por último, reservamos a sexta \textit{sprint} para avaliar o comportamento do sistema sob uso mais intenso e em telas de celular antes de subi-lo para a nuvem. Nessa etapa, a ferramenta k6 será usada para simular vários acessos ao mesmo tempo nas listagens da vitrine e do fórum, buscando manter o tempo de resposta abaixo de 300 milissegundos, ao passo que a interface passará por testes em resoluções móveis (a partir de 360 px) e de contraste visual baseados na WCAG 2.1.
+Por último, reservamos a sexta \textit{sprint} para avaliar o comportamento do sistema sob uso mais intenso e em telas de celular antes de subi-lo para a nuvem. Nessa etapa, a ferramenta k6 será usada para simular vários acessos ao mesmo tempo nas listagens da vitrine e do fórum, buscando manter o tempo de resposta abaixo de 300 milissegundos, ao passo que a interface passará por testes em resoluções móveis (a partir de 360 px) e de contraste visual baseados na WCAG 2.1 (Tabela~\ref{tab:testes}).
 
 \begin{table}[H]
 \centering
+\singlespacing
 \caption{Estratégia de Testes e Critérios de Validação do MVP}
 \label{tab:testes}
 \small
@@ -128,4 +176,7 @@ Ensaios de Carga e Desempenho & k6 & Consultas paginadas da Vitrine de Doações
 Inspeção de Usabilidade e Acessibilidade & Chrome DevTools / Lighthouse & Telas da aplicação web em resolução móvel (\textit{mobile-first}) & Layout funcional a partir de 360 px de largura e conformidade com os critérios de contraste da WCAG 2.1 (nível AA). \\
 \bottomrule
 \end{tabular}
+\vspace{0.15cm}
+
+{\small Fonte: autor (2026).}
 \end{table}
