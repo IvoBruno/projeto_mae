@@ -6,7 +6,7 @@ Trata-se de uma pesquisa aplicada de natureza tecnológica \cite{wazlawick2014},
 Quanto à abordagem, o projeto combina uma etapa qualitativa e outra quantitativa. Na frente qualitativa, os requisitos funcionais e não funcionais apresentados na Seção 5.3 foram levantados a partir de três fontes principais: a revisão bibliográfica sobre as demandas emocionais, materiais e de segurança relatadas por mães solo na literatura recente \cite{brito2022, araujo2025, sousa2025}; a análise documental da LGPD e de engenharia de requisitos voltada à privacidade \cite{brasil2018, moura2024}; e o estudo comparativo das funcionalidades e limitações das plataformas similares avaliadas na Seção 2, além do sistema de doações descrito por \textcite{santos2026}. Por não envolver aplicação de questionários ou entrevistas diretas com mães, que constituem um público em situação de vulnerabilidade cuja abordagem exigiria submissão prévia ao Comitê de Ética em Pesquisa (Resolução CNS nº 510/2016), o levantamento apoia-se integralmente em fontes secundárias e técnicas. Já a frente quantitativa concentra-se na validação do software construído, medindo indicadores objetivos como o tempo de resposta das rotas da API sob carga e o percentual de cobertura dos testes automatizados.
 
 \subsection{Ciclo de Desenvolvimento Ágil Adaptado (6 Sprints Quinzenais)}
-Como o desenvolvimento será conduzido por um único autor, sem a divisão de papéis de equipe prevista no Scrum tradicional, adotou-se um processo iterativo inspirado em Scrum e Kanban, mantendo práticas compatíveis com o trabalho individual: \textit{backlog} priorizado, \textit{sprints} de duas semanas, controle visual de tarefas em quadro Kanban no GitHub Projects e revisão quinzenal das entregas com o orientador. Ao todo, o cronograma de implementação divide-se em 6 \textit{sprints} quinzenais (12 semanas de codificação), organizadas da seguinte forma:
+Como o desenvolvimento será conduzido por um único autor, sem a divisão de papéis de equipe prevista no Scrum tradicional, será adotado um processo iterativo inspirado em Scrum e Kanban, mantendo práticas compatíveis com o trabalho individual: \textit{backlog} priorizado, \textit{sprints} de duas semanas, controle visual de tarefas em quadro Kanban no GitHub Projects e revisão quinzenal das entregas com o orientador. Ao todo, o cronograma de implementação será dividido em 6 \textit{sprints} quinzenais (12 semanas de codificação), organizadas da seguinte forma:
 
 \begin{itemize}
     \item \textit{Sprint 1}: Estrutura base em Arquitetura Hexagonal, banco de dados, cadastro com CEP e login (JWT).
@@ -52,7 +52,7 @@ RF08 & Denúncia e Bloqueio Preventivo de Usuários & Permitir que a usuária bl
 {\small Fonte: autor (2026).}
 \end{table}
 
-Para colocar em prática o fluxo seguro citado no \texttt{RF06}, partimos do cuidado de nunca exibir o telefone da mãe beneficiária dentro da plataforma. Na verdade, ela nem precisa informar WhatsApp no cadastro se for apenas pedir ou receber doações. Quando a ajuda começa pelo Mural de Pedidos (\texttt{RF05}), o processo é direto: o doador escolhe a solicitação que deseja atender, informa seu número ao confirmar e o sistema gera o link \texttt{wa.me} visível somente para a autora daquele pedido. Já na Vitrine de Enxovais (\texttt{RF04}), existe uma aprovação antes disso. Essa etapa evita tanto que o anunciante receba dezenas de mensagens ao mesmo tempo quanto que ex-companheiros ou terceiros mal-intencionados publiquem anúncios falsos como isca para descobrir o número das usuárias. Por conta disso, a mãe primeiro demonstra interesse mostrando apenas seu nome ou apelido e bairro, e só depois que o doador aceita atendê-la é que o anúncio trava novas solicitações e libera o WhatsApp dele para ela. Nos dois casos, quem abre o link é sempre a mãe. Antes de sair para o WhatsApp, um aviso rápido na tela lembra de checar o perfil antes de mandar a primeira mensagem, não informar o endereço de casa e marcar a entrega em locais públicos movimentados ou pontos de apoio como o CRAS, seguindo os status da Tabela~\ref{tab:status}.
+Para colocar em prática o fluxo seguro citado no \texttt{RF06}, partiremos do cuidado de nunca exibir o telefone da mãe beneficiária dentro da plataforma. Na verdade, ela nem precisa informar WhatsApp no cadastro se for apenas pedir ou receber doações. Quando a ajuda começa pelo Mural de Pedidos (\texttt{RF05}), o processo é direto: o doador escolhe a solicitação que deseja atender, informa seu número ao confirmar e o sistema gera o link \texttt{wa.me} visível somente para a autora daquele pedido. Já na Vitrine de Enxovais (\texttt{RF04}), existe uma aprovação antes disso. Essa etapa evita tanto que o anunciante receba dezenas de mensagens ao mesmo tempo quanto que ex-companheiros ou terceiros mal-intencionados publiquem anúncios falsos como isca para descobrir o número das usuárias. Por conta disso, a mãe primeiro demonstra interesse mostrando apenas seu nome ou apelido e bairro, e só depois que o doador aceita atendê-la é que o anúncio trava novas solicitações e libera o WhatsApp dele para ela. Nos dois casos, quem abre o link é sempre a mãe. Antes de sair para o WhatsApp, um aviso rápido na tela lembra de checar o perfil antes de mandar a primeira mensagem, não informar o endereço de casa e marcar a entrega em locais públicos movimentados ou pontos de apoio como o CRAS, seguindo os status da Tabela~\ref{tab:status}.
 
 \begin{table}[H]
 \centering
@@ -108,10 +108,7 @@ RNF06 & Responsividade e Acessibilidade Móvel & Adequar a interface ao padrão 
 {\small Fonte: autor (2026).}
 \end{table}
 
-\subsection{Arquitetura e Pilha Tecnológica Selecionada}
-Na organização interna do \textit{back-end}, as entidades centrais do negócio (\texttt{Doacao}, \texttt{Pedido}, \texttt{MatchDoacao}, \texttt{Topico} e \texttt{Usuario}) ficam isoladas no núcleo de domínio, sem depender de bibliotecas externas. Toda comunicação com o meio externo passa por contratos explícitos divididos entre portas de entrada, que expõem os casos de uso aos controladores REST e aos testes, e portas de saída, implementadas pelos adaptadores de banco de dados, envio de imagens, busca de CEP e notificações (Figura~\ref{fig:arquitetura}).
-
-\input{estrutura/2_textuais/fig_arquitetura}
+\subsection{Pilha Tecnológica Selecionada e Arquitetura}
 
 Quanto às decisões de tecnologias, três pontos principais são essenciais: viabilidade de operação a custo zero, operando sempre em camadas gratuitas, maturidade e validação forte de dados tanto no cliente quanto no servidor para evitar falhas em regras sensíveis, e produtividade para que seja viável o desenvolvimento com um único autor (Tabela~\ref{tab:stack}).
 
@@ -121,29 +118,29 @@ Quanto às decisões de tecnologias, três pontos principais são essenciais: vi
 \caption{Pilha Tecnológica (\textit{Stack}) Selecionada para o EloMaterno}
 \label{tab:stack}
 \small
-\begin{tabular}{p{3.6cm}p{4.2cm}p{6.9cm}}
+\begin{tabular}{p{3.3cm}p{3.9cm}p{7.5cm}}
 \toprule
-\textbf{Camada / Componente} & \textbf{Tecnologia Selecionada} & \textbf{Finalidade no Projeto} \\
+\textbf{Camada / Componente} & \textbf{Tecnologia Selecionada} & \textbf{Justificativa da Escolha} \\
 \midrule
-Arquitetura de Software & Arquitetura Hexagonal (\textit{Ports \& Adapters}) & Isolamento das regras de negócio e das políticas de privacidade em relação ao banco de dados e aos controladores REST. \\
-\addlinespace
-\textit{Back-end} (API REST) & Java 17+ / Spring Boot 3 & Construção da API RESTful com tipagem estática, injeção de dependências e validação de regras de domínio. \\
-\addlinespace
-Segurança e Sessão & Spring Security + JWT + BCrypt & Autenticação \textit{stateless}, criptografia de credenciais e controle de acesso baseado em papéis (RBAC). \\
-\addlinespace
-\textit{Front-end} (SPA) & React.js (Vite) + Tailwind CSS & Construção de interface reativa, componentizada e responsiva (\textit{mobile-first}). \\
-\addlinespace
-Validação de Formulários & React Hook Form + Zod & Validação declarativa de esquemas no navegador com retorno visual imediato antes do envio à API. \\
-\addlinespace
-Banco de Dados e Migrações & PostgreSQL 15+ / Flyway & Persistência relacional com suporte a transações ACID, versionamento de esquema e índices B-Tree compostos para buscas territoriais. \\
-\addlinespace
-Armazenamento de Imagens & Cloudinary CDN & Hospedagem externa de fotos dos itens doados com compressão automática na entrega. \\
-\addlinespace
-Qualidade e Testes & JUnit 5 + ArchUnit + k6 & Testes unitários de regras de domínio, verificação automatizada da arquitetura e ensaios de carga da API. \\
-\addlinespace
-Infraestrutura e Deploy & Docker + Render + Supabase/Neon + Vercel & Conteinerização do ambiente local e publicação contínua em serviços de nuvem de camada gratuita (\textit{free tier}). \\
-\addlinespace
-Validação de endereços & ViaCEP & API acessada via adaptador que retorna os dados para preenchimento automático dos dados residenciais. \\
+Arquitetura de Software & Arquitetura Hexagonal (\textit{Ports \& Adapters}) & Isola o núcleo para facilitar a troca futura de serviços gratuitos caso mudem seus limites de uso, mexendo apenas no adaptador correspondente, além de permitir testar regras de privacidade sem subir banco de dados. \\
+\addlinespace[3pt]
+\textit{Back-end} (API REST) & Java 17+ / Spring Boot 3 & Combina tipagem estática, que evita erros silenciosos em regras sensíveis de dados, com a produtividade do ecossistema Spring para um único desenvolvedor cumprir as seis \textit{sprints}. \\
+\addlinespace[3pt]
+Segurança e Sessão & Spring Security + JWT + BCrypt & O JWT dispensa guardar sessão na memória curta da hospedagem gratuita, e o BCrypt já traz \textit{salt} nativo para proteger as senhas. \\
+\addlinespace[3pt]
+\textit{Front-end} (SPA) & React.js (Vite) + Tailwind CSS & Como as telas principais exigem login, uma SPA leve com Vite faz mais sentido que \textit{frameworks} SSR pesados (como Next.js); o Tailwind agiliza o ajuste para celulares. \\
+\addlinespace[3pt]
+Validação de Formulários & React Hook Form + Zod & Barra erros de preenchimento direto no celular sem travar aparelhos básicos nem gastar dados móveis à toa com requisições inválidas. \\
+\addlinespace[3pt]
+Banco de Dados e Migrações & PostgreSQL 15+ / Flyway & Preferido frente a bancos NoSQL pela integridade transacional nas doações e pelas buscas rápidas de bairro com B-Tree nativa, sem precisar de extensões pesadas de GPS como PostGIS. O Flyway mantém o esquema versionado. \\
+\addlinespace[3pt]
+Armazenamento de Imagens & Cloudinary CDN & Tira o peso de \textit{upload} e tratamento de fotos do servidor gratuito e já entrega imagens leves para poupar a franquia móvel das usuárias. \\
+\addlinespace[3pt]
+Qualidade e Testes & JUnit 5 + ArchUnit + k6 & Conjunto gratuito e leve: JUnit 5 testa o domínio em milissegundos, ArchUnit trava desvios de camadas no código e k6 simula carga localmente. \\
+\addlinespace[3pt]
+Infraestrutura e Deploy & Docker + Render + Neon + Vercel & Docker evita diferenças entre a máquina local e a nuvem, enquanto Vercel, Render e Neon oferecem planos gratuitos integrados ao GitHub e sem bloqueio manual por inatividade. \\
+\addlinespace[3pt]
+Validação de endereços & ViaCEP & API pública gratuita e sem chave de acesso que evita erros de digitação de cidade e bairro no celular. \\
 \bottomrule
 \end{tabular}
 \vspace{0.15cm}
@@ -151,12 +148,18 @@ Validação de endereços & ViaCEP & API acessada via adaptador que retorna os d
 {\small Fonte: autor (2026).}
 \end{table}
 
+Na organização interna do \textit{back-end}, as entidades centrais do negócio (\texttt{Usuario}, \texttt{Topico}, \texttt{Doacao}, \texttt{Pedido} e \texttt{MatchDoacao}) ficam isoladas no núcleo de domínio, sem depender de \textit{frameworks} externos. Toda comunicação com o que está fora passa por contratos explícitos divididos entre portas de entrada, que expõem os casos de uso aos controladores REST e aos testes, e portas de saída, implementadas pelos adaptadores de banco de dados, envio de imagens, busca de CEP e notificações (Figura~\ref{fig:arquitetura}).
+
+\input{estrutura/2_textuais/fig_arquitetura}
+
+Dois elementos desse desenho concentram as travas de privacidade que serão cobradas mais adiante nos testes. O primeiro é a entidade \texttt{MatchDoacao}. Em vez de jogar o controle da entrega dentro do próprio anúncio, essa classe registra separadamente cada tentativa de combinação entre doador e mãe, guarda os status da Tabela~\ref{tab:status} e impede a geração do link \texttt{wa.me} fora da fase \texttt{EM\_NEGOCIACAO}. Já o segundo é a anotação customizada \texttt{@SemPII}, criada para marcar títulos, relatos e comentários recebidos pela aplicação e disparar uma checagem por expressões regulares que devolve erro HTTP 422 sempre que encontra padrões de CPF ou telefone no texto.
+
 \subsection{Procedimentos de Teste e Garantia da Qualidade}
 Sabemos que definir uma boa arquitetura no papel não garante, por si só, que o software final estará livre de falhas. Por esse motivo, os testes e a validação do EloMaterno foram pensados para caminhar junto com cada uma das seis \textit{sprints}, cuidando para que eventuais descuidos durante a codificação não quebrem o isolamento entre as camadas nem deixem vazar dados pessoais das usuárias.
 
-Dentro do \textit{back-end}, dividimos esse trabalho de verificação em duas partes. Na primeira, usamos o JUnit 5 para testar separadamente as regras de negócio do domínio, como o bloqueio de telefones e CPFs nas postagens do fórum e a trava de fluxo seguro antes de abrir o WhatsApp, junto com o ArchUnit, que confere se nenhuma classe de tela ou de banco invadiu o pacote de domínio da Arquitetura Hexagonal. Já na segunda parte, o foco vai para as rotas da API REST. Aqui seguimos a lógica apontada por \textcite{banias2021}, enviando ao servidor tanto requisições normais quanto dados propositalmente errados, justamente para ter certeza de que os códigos HTTP de erro e o tempo de resposta funcionam como deveriam.
+Dentro do \textit{back-end}, dividiremos esse trabalho de verificação em duas partes. Na primeira, usaremos o JUnit 5 para testar separadamente as regras de negócio do domínio, como a máquina de estados de \texttt{MatchDoacao} e o bloqueio de telefones e CPFs via \texttt{@SemPII}, junto com o ArchUnit, que conferirá se nenhuma classe de tela ou de banco invada o pacote de domínio da Arquitetura Hexagonal. Para evitar que o filtro erre a mão, montaremos uma bateria de 100 frases de teste, sendo metade com dados pessoais disfarçados e metade com relatos comuns que trazem números inofensivos, como idades de filhos, medindo assim os falsos positivos, os falsos negativos e a taxa de acerto. Já na segunda parte, o foco irá para as rotas da API REST. Aqui seguiremos a lógica apontada por \textcite{banias2021}, enviando ao servidor tanto requisições normais quanto dados propositalmente errados e tentativas de acesso indevido, para conferir os códigos HTTP de erro e garantir que o telefone nunca vaze antes da fase \texttt{EM\_NEGOCIACAO} nem seja exposto a outra usuária.
 
-Por último, reservamos a sexta \textit{sprint} para avaliar o comportamento do sistema sob uso mais intenso e em telas de celular antes de subi-lo para a nuvem. Nessa etapa, a ferramenta k6 será usada para simular vários acessos ao mesmo tempo nas listagens da vitrine e do fórum, buscando manter o tempo de resposta abaixo de 300 milissegundos, ao passo que a interface passará por testes em resoluções móveis (a partir de 360 px) e de contraste visual baseados na WCAG 2.1 (Tabela~\ref{tab:testes}).
+Por último, reservaremos a sexta \textit{sprint} para avaliar o comportamento do sistema sob uso mais intenso e em telas de celular antes de subi-lo para a nuvem. Nessa etapa, a ferramenta k6 será usada para simular vários acessos ao mesmo tempo nas listagens da vitrine e do fórum, buscando manter o tempo de resposta abaixo de 300 milissegundos, ao passo que a interface passará por testes em resoluções móveis (a partir de 360 px) e de contraste visual baseados na WCAG 2.1, tanto via Lighthouse quanto manualmente para navegação via teclado e com leitor de tela (TalkBack) (Tabela~\ref{tab:testes}).
 
 \begin{table}[H]
 \centering
@@ -168,11 +171,11 @@ Por último, reservamos a sexta \textit{sprint} para avaliar o comportamento do 
 \toprule
 \textbf{Tipo de Teste} & \textbf{Ferramenta} & \textbf{Alvo de Verificação} & \textbf{Critério de Aceite / Meta} \\
 \midrule
-Testes de Unidade & JUnit 5 & Regras de negócio do domínio (\texttt{@SemPII}, máquina de estados de \texttt{MatchDoacao} e anonimização) & Cobertura mínima de 80\% nas classes do núcleo de domínio, sem falhas nas regras críticas de privacidade. \\
+Testes de Unidade & JUnit 5 & Regras de domínio (\texttt{MatchDoacao}, anonimização e \texttt{@SemPII} sobre conjunto de 100 textos: 50 com dados pessoais e 50 sem, incluindo números comuns como idades de filhos) & Cobertura mínima de 80\% no núcleo de domínio e registro da taxa de acerto, falsos positivos e falsos negativos do filtro. \\
 \addlinespace
 Testes de Arquitetura & ArchUnit & Isolamento entre o pacote de domínio e os adaptadores externos (REST e JPA) & Zero violações de dependência direta entre controladores/interface e camada de banco de dados. \\
 \addlinespace
-Testes de Integração da API & Spring Boot Test / MockMvc & Contratos das rotas REST, autenticação JWT, permissões por perfil e códigos de erro (HTTP 401, 403, 422) & Retorno correto dos códigos HTTP para entradas válidas e bloqueio efetivo de postagens com dados sensíveis. \\
+Testes de Integração da API & Spring Boot Test / MockMvc & Rotas REST, autenticação JWT, isolamento entre contas (usuária B consulta o \textit{match} da usuária A) e controle de exposição de telefone por status & Retorno HTTP 403 no acesso cruzado entre usuárias, HTTP 422 para dados sensíveis e ausência de telefone no JSON enquanto o status for \texttt{SOLICITADO} ou \texttt{ANUNCIADO}. \\
 \addlinespace
 Ensaios de Carga e Desempenho & k6 & Consultas paginadas da Vitrine de Doações e do Fórum Comunitário com filtros territoriais & Tempo de resposta no percentil 95 inferior a 300 ms ($p95 < 300\text{ ms}$) sob carga simulada. \\
 \addlinespace
